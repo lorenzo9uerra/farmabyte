@@ -1,7 +1,6 @@
 
 package it.farmabyte.app.controller;
 import it.farmabyte.app.model.ClienteRegistrato;
-import it.farmabyte.app.model.Farmacista;
 import it.farmabyte.app.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
