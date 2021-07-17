@@ -1,6 +1,6 @@
 
 package it.farmabyte.app.controller;
-import it.farmabyte.app.model.Utente;
+import it.farmabyte.app.model.ClienteRegistrato;
 import it.farmabyte.app.services.UtenteService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.ui.Model;
@@ -14,7 +14,7 @@ public class ProvaController {
 
     @GetMapping("/utente")
     public String hello(Model model) {
-        Utente u = new Utente();
+        ClienteRegistrato u = new ClienteRegistrato();
         u.setNome("Giorgio");
         model.addAttribute("utente", u);
         return "prova";

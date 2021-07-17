@@ -1,7 +1,7 @@
 package it.farmabyte.app.services;
 
-import it.farmabyte.app.model.Utente;
+import it.farmabyte.app.model.ClienteRegistrato;
 
 public interface IUtenteService {
-    Utente getFrase();
+    ClienteRegistrato getFrase();
 }
