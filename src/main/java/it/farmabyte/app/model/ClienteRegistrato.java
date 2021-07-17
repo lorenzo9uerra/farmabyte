@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.context.annotation.Bean;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class ClienteRegistrato {
     private String nome;
     private String cognome;
@@ -19,10 +22,6 @@ public class ClienteRegistrato {
     private boolean bloccato;
 
     private ArrayList<Prenotazione> prenotazioni;
-
-    public ClienteRegistrato(){
-        prenotazioni = new ArrayList<>();
-    }
 
     public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, Date dataDiNascita,
             int effrazioni, boolean verificato, boolean bloccato) {
@@ -40,10 +39,6 @@ public class ClienteRegistrato {
 
     public void addPrenotazione(Prenotazione toAdd){
         prenotazioni.add(toAdd);
-    }
-
-    public void setPrenotazioni(ArrayList<Prenotazione> prenotazioni){
-        this.prenotazioni = prenotazioni;
     }
 
     public Prenotazione[] elencaPrenotazioni(){
