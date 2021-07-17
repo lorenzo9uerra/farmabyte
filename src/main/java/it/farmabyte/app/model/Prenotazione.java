@@ -3,17 +3,54 @@ package it.farmabyte.app.model;
 import java.util.Date;
 import java.util.HashMap;
 
-import lombok.Getter;
-import lombok.Setter;
 
 public class Prenotazione {
-    @Getter @Setter private Date data;
-    @Getter @Setter private boolean confermata;
-    @Getter @Setter private ClienteRegistrato richiedente;
-    @Getter @Setter private Farmacia farmacia;
+    private Date data;
+    private boolean confermata;
+    private ClienteRegistrato richiedente;
+    private Farmacia farmacia;
+    private HashMap<Farmaco, Integer> farmaci;
     
-    @Getter @Setter private HashMap<Farmaco, Integer> farmaci;
-    
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public boolean isConfermata() {
+        return confermata;
+    }
+
+    public void setConfermata(boolean confermata) {
+        this.confermata = confermata;
+    }
+
+    public ClienteRegistrato getRichiedente() {
+        return richiedente;
+    }
+
+    public void setRichiedente(ClienteRegistrato richiedente) {
+        this.richiedente = richiedente;
+    }
+
+    public Farmacia getFarmacia() {
+        return farmacia;
+    }
+
+    public void setFarmacia(Farmacia farmacia) {
+        this.farmacia = farmacia;
+    }
+
+    public HashMap<Farmaco, Integer> getFarmaci() {
+        return farmaci;
+    }
+
+    public void setFarmaci(HashMap<Farmaco, Integer> farmaci) {
+        this.farmaci = farmaci;
+    }
+
     public Prenotazione(){
         farmaci = new HashMap<>();
     }

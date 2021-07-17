@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class Farmacia {
-    @Getter @Setter private String id;
-    @Getter @Setter private String nome;
-    @Getter @Setter private String provincia;
-    @Getter @Setter private String comune;
-    @Getter @Setter private String via;
-    @Getter @Setter private int numeroCivico;
+    private String id;
+    private String nome;
+    private String provincia;
+    private String comune;
+    private String via;
+    private int numeroCivico;
 
-    @Setter private HashMap<Farmaco, Lotto> magazzino;
-    @Setter private ArrayList<Prenotazione> prenotazioni;
+    private HashMap<Farmaco, Lotto> magazzino;
+    private ArrayList<Prenotazione> prenotazioni;
     
     public Farmacia(String id, String nome, String provincia, String comune, String via, int numeroCivico) {
         this.id = id;
@@ -51,6 +48,70 @@ public class Farmacia {
 
     public HashMap<Farmaco, Lotto> elencaFarmaci(){
         return magazzino;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public String getComune() {
+        return comune;
+    }
+
+    public void setComune(String comune) {
+        this.comune = comune;
+    }
+
+    public String getVia() {
+        return via;
+    }
+
+    public void setVia(String via) {
+        this.via = via;
+    }
+
+    public int getNumeroCivico() {
+        return numeroCivico;
+    }
+
+    public void setNumeroCivico(int numeroCivico) {
+        this.numeroCivico = numeroCivico;
+    }
+
+    public HashMap<Farmaco, Lotto> getMagazzino() {
+        return magazzino;
+    }
+
+    public void setMagazzino(HashMap<Farmaco, Lotto> magazzino) {
+        this.magazzino = magazzino;
+    }
+
+    public ArrayList<Prenotazione> getPrenotazioni() {
+        return prenotazioni;
+    }
+
+    public void setPrenotazioni(ArrayList<Prenotazione> prenotazioni) {
+        this.prenotazioni = prenotazioni;
     }
 
 }
