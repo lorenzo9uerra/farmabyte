@@ -6,16 +6,17 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-
+@Getter
+@Setter
 public class ClienteRegistrato {
-    @Getter @Setter private String nome;
-    @Getter @Setter private String cognome;
-    @Getter @Setter private String codiceFiscale;
-    @Getter @Setter private String email;
-    @Getter @Setter private Date dataDiNascita;
-    @Getter @Setter private int effrazioni;
-    @Getter @Setter private boolean verificato;
-    @Getter @Setter private boolean bloccato;
+    private String nome;
+    private String cognome;
+    private String codiceFiscale;
+    private String email;
+    private Date dataDiNascita;
+    private int effrazioni;
+    private boolean verificato;
+    private boolean bloccato;
 
     private ArrayList<Prenotazione> prenotazioni;
 

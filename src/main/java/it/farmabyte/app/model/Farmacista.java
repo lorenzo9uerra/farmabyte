@@ -3,12 +3,14 @@ package it.farmabyte.app.model;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class Farmacista {
-    @Getter @Setter private String nome;
-    @Getter @Setter private String cognome;
-    @Getter @Setter private String codiceFiscale;
-    @Getter @Setter private String email;
-    @Getter @Setter private Farmacia farmacia;
+    private String nome;
+    private String cognome;
+    private String codiceFiscale;
+    private String email;
+    private Farmacia farmacia;
     
     public Farmacista(String nome, String cognome, String codiceFiscale, String email) {
         this.nome = nome;

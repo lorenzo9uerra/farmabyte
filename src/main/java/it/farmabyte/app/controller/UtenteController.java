@@ -3,21 +3,24 @@ package it.farmabyte.app.controller;
 import it.farmabyte.app.model.ClienteRegistrato;
 import it.farmabyte.app.services.UtenteService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
-@RestController
-public class ProvaController {
+@Controller
+@RequestMapping(value = "/utente")
+public class UtenteController {
 
-    @GetMapping("/utente")
-    public String hello(Model model) {
+
+    @GetMapping("")
+    public String utente(Model model) {
         ClienteRegistrato u = new ClienteRegistrato();
-        u.setNome("Giorgio");
+
+        u.setNome("Marina");
         model.addAttribute("utente", u);
-        return "prova";
+        return "utente";
     }
 
 }
