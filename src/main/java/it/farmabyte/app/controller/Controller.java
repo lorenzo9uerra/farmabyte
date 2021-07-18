@@ -7,8 +7,8 @@ import java.io.Writer;
 import java.time.LocalDateTime;
 
 public class Controller {
-    //private dbConnection
 
+    protected MockSingletonDatabase dbInstance;
     private Writer logWriter;
 
     //Occhio che per scrivere qua servono i permessi di root
@@ -17,6 +17,7 @@ public class Controller {
     public Controller(String logPath){
         try {
             logWriter = apriLog(logPath);
+            apriConnessione();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -25,12 +26,15 @@ public class Controller {
     public Controller(){
         try {
             logWriter = apriLog(DEFAULT_LOG_PATH);
+            apriConnessione();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    //private apriConnessione()
+    private void apriConnessione(){
+        dbInstance = MockSingletonDatabase.getDatabaseInstance();
+    }
 
     private Writer apriLog(String logPath) throws IOException{
         return new FileWriter(new File(logPath));
@@ -41,5 +45,4 @@ public class Controller {
                         + "\n");
     }
 
-    //protected getConnection()
 }

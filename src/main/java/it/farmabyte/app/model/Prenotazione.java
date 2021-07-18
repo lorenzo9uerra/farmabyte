@@ -55,6 +55,15 @@ public class Prenotazione {
         farmaci = new HashMap<>();
     }
 
+    public Prenotazione(Date data, boolean confermata, ClienteRegistrato richiedente, Farmacia farmacia, HashMap<Farmaco, Integer> farmaci) {
+        this.data = data;
+        this.confermata = confermata;
+        this.richiedente = richiedente;
+        this.farmacia = farmacia;
+
+        this.farmaci = farmaci;
+    }
+
     public Prenotazione(Date data, boolean confermata, ClienteRegistrato richiedente, Farmacia farmacia) {
         this.data = data;
         this.confermata = confermata;
@@ -63,6 +72,7 @@ public class Prenotazione {
 
         farmaci = new HashMap<>();
     }
+    
 
     public void addFarmaco(Farmaco toAdd, int quantita){
         farmaci.put(toAdd, quantita);

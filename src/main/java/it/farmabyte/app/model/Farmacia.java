@@ -46,10 +46,6 @@ public class Farmacia {
         return prenotazioniFiltrate.toArray(new Prenotazione[prenotazioniFiltrate.size()]);
     }
 
-    public HashMap<Farmaco, Lotto> elencaFarmaci(){
-        return magazzino;
-    }
-
     public String getId() {
         return id;
     }
