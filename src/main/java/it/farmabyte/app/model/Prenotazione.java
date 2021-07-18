@@ -5,11 +5,15 @@ import java.util.HashMap;
 
 
 public class Prenotazione {
+    private String id;
     private Date data;
     private boolean confermata;
     private ClienteRegistrato richiedente;
     private Farmacia farmacia;
     private HashMap<Farmaco, Integer> farmaci;
+
+    public String getId(){return id;}
+    public void setId(String id){this.id=id;}
     
     public Date getData() {
         return data;
