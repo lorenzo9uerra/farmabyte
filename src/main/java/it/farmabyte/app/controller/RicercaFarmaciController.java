@@ -4,7 +4,10 @@ import java.util.HashMap;
 
 import it.farmabyte.app.model.Farmacia;
 import it.farmabyte.app.model.Lotto;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RicercaFarmaciController extends Controller implements IRicercaFarmaci{
 
     //in realtà sarebbe meglio HashMap<Farmacia, Pair<Farmaco, Lotto>>, leggi commenti interfaccia

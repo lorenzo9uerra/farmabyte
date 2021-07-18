@@ -1,6 +1,11 @@
 package it.farmabyte.app.model;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.web.context.WebApplicationContext;
 
+
+@Scope(value = WebApplicationContext.SCOPE_SESSION)
 public class Farmacista {
     private String nome;
     private String cognome;

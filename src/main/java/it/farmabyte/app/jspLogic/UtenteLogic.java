@@ -1,5 +1,6 @@
 
-package it.farmabyte.app.controller;
+package it.farmabyte.app.jspLogic;
+import it.farmabyte.app.controller.RicercaFarmaciController;
 import it.farmabyte.app.model.ClienteRegistrato;
 import it.farmabyte.app.services.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 @Controller
 @RequestMapping(value = "/utente")
-public class UtenteController {
+public class UtenteLogic {
 
     @Autowired
-    UtenteService utenteService;
+    private RicercaFarmaciController ricercaFarmaciController;
 
     ClienteRegistrato u;
 
@@ -30,7 +31,6 @@ public class UtenteController {
         System.out.println("ciao" + u.getNome());
         model.addAttribute("utente", u);
         model.addAttribute("utente1",u1);
-        //model.addAttribute("belooo",new Farmacista("peppino","smaruzzi","CC22","gg@gmail.com"));
         return "utente";
     }
 
