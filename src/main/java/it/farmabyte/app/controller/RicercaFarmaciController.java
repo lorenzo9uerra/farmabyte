@@ -8,6 +8,8 @@ import it.farmabyte.app.model.Farmacia;
 import it.farmabyte.app.model.Lotto;
 import it.farmabyte.app.model.Farmaco;
 import it.farmabyte.app.model.Pair;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 @Service
 public class RicercaFarmaciController extends Controller implements IRicercaFarmaci{

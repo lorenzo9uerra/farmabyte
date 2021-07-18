@@ -6,12 +6,7 @@
     <title>Hello ${utente.nome}!</title>
 </head>
 <body>
-    <h2 class="hello-title">Hello ${utente.nome}!</h2>
-
-    <form:form action="/utente" method="post" modelAttribute="utente1">
-        <form:label path="nome">Book Name: </form:label> <form:input type="text" path="nome"/>
-        <input type="submit" value="submit"/>
-    </form:form>
     <h2 class="hello-title">Hello ${farmacista.nome}!</h2>
+    <a href="utente">Utente</a>
 </body>
 </html>

@@ -30,6 +30,7 @@ public class DbUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        this.initialize();
         for (int i = 0; i < maxclienti; i++) {
             if (clienti[i].getEmail().equals(username)) {
                 // ancora non lo utilizziamo, ma serve per dare accesso ai
