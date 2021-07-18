@@ -11,6 +11,7 @@ public class ClienteRegistrato {
     private String codiceFiscale;
     private String email;
     private String password;
+    private String passwordConfirm;
     private Set authorities;
     private Date dataDiNascita;
     private int effrazioni;
@@ -34,6 +35,14 @@ public class ClienteRegistrato {
     }
 
     public ClienteRegistrato() {
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
     public String getNome() {
@@ -65,6 +74,14 @@ public class ClienteRegistrato {
     }
 
     public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
+        return email;
+    }
+
+    public void setUsername(String email) {
         this.email = email;
     }
 

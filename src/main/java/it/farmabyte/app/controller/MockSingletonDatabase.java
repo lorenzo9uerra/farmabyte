@@ -1,7 +1,6 @@
 package it.farmabyte.app.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -32,6 +31,14 @@ public class MockSingletonDatabase {
         farmacie = new ArrayList<>();
         clienti = new ArrayList<>();
         farmacisti = new ArrayList<>();
+    }
+
+    public ClienteRegistrato findByUsername(String username){
+        for(int i=0; i<clienti.size(); i++){
+            if(clienti.get(i).getEmail().equals(username))
+                return clienti.get(i);
+        }
+        return null;
     }
 
     public boolean insertPrenotazione(Prenotazione toInsert){
