@@ -10,9 +10,8 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
 public class RicercaFarmaciDTO
 {
-    private Date Inizio;
-    private Date Fine;
+    private Date inizio;
+    private Date fine;
 }

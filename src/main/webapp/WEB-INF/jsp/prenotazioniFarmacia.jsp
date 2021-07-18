@@ -34,34 +34,32 @@
 
     <form:form action="/prenotazioniFarmacia/ricerca" method="post" modelAttribute="filtro">
         Da :
-        <input type="date" path="inizio">
+        <form:input type="date" path="inizio"/>
         A:
-        <input type="date" path="fine">
+        <form:input type="date" path="fine"/>
         <input type="submit" value="Cerca"/>
     </form:form>
-
-
     <table>
-                    <tbody>
-                        <c:forEach items="${prenotazioniOggi}" var="prenotazione">
+        <tbody>
+                        <c:forEach items="${ListaPrenotaioni}" var="prenotazione">
                             <tr>
+                            <td>${prenotazione.id} </td>
                                 <td>${prenotazione.richiedente.nome} ${prenotazione.richiedente.cognome}</td>
+                                <td>${prenotazione.data} </td>
                                 <td>
                                 <c:choose>
                                     <c:when test="${prenotazione.confermata == true}">
                                         Confermata
                                     </c:when>
                                     <c:otherwise>
-                                        <form:form action="/prenotazioniFarmacia/conferma" method="get" modelAttribute="prenotazione">
-                                            <input type="submit" value="Conferma"/>
-                                        </form:form>
+                                       Non Confermata
                                     </c:otherwise>
                                 </c:choose>
                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
-        </table>
+    </table>
 
 </body>
 </html>
