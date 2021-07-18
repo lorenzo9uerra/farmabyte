@@ -31,7 +31,6 @@ public class PrenotazioniFarmaciaLogic {
 
         //Collection<Prenotazione> prenotazioniOggi= prenotazioniController.getPrenotazioni( farmacista.getFarmacia(), oggi,oggi);
 
-
         ClienteRegistrato cr=new ClienteRegistrato();
         cr.setNome("pippo");
         cr.setCognome("Augusto");
@@ -60,7 +59,7 @@ public class PrenotazioniFarmaciaLogic {
         return "prenotazioniFarmacia";
     }
 
-    @PostMapping("/conferma")
+    @PostMapping("")
     public String confermaPrenotazione(@ModelAttribute("pr") Prenotazione prenotazione, Model model){
 
         //prenotazioniController.confermaPrenotazione(prenotazione.getId());
@@ -73,8 +72,8 @@ public class PrenotazioniFarmaciaLogic {
         return "prenotazioniFarmacia";
     }
 
-    @PostMapping("/ricerca")
-    public String utente(Model model,@ModelAttribute("filtro") RicercaFarmaciDTO filtro) {
+    @PutMapping("")
+    public String ricercaPrenotazioni(Model model,@ModelAttribute("filtro") RicercaFarmaciDTO filtro) {
         //Collection<Prenotazione> ListaPrenotazioni= prenotazioniController.getPrenotazioni( farmacista.getFarmacia(), filtro.getInizio(),filtro.getFine());
         //model.addAttribute("ListaPrenotazioni", ListaPrenotazioni);
         return "prenotazioniFarmacia";

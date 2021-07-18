@@ -20,7 +20,7 @@
                                     Confermata
                                 </c:when>
                                 <c:otherwise>
-                                    <form:form action="/prenotazioniFarmacia/conferma" method="post" modelAttribute="pr">
+                                    <form:form action="/prenotazioniFarmacia" method="post" modelAttribute="pr">
                                         <form:input type="hidden" path="id" value="${prenotazione.id}"/>
                                         <input type="submit" value="Conferma"/>
                                     </form:form>
@@ -32,7 +32,7 @@
                 </tbody>
     </table>
 
-    <form:form action="/prenotazioniFarmacia/ricerca" method="post" modelAttribute="filtro">
+    <form:form action="/prenotazioniFarmacia" method="put" modelAttribute="filtro">
         Da :
         <form:input type="date" path="inizio"/>
         A:
