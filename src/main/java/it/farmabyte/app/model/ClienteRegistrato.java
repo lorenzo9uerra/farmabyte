@@ -1,10 +1,11 @@
 package it.farmabyte.app.model;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 
 public class ClienteRegistrato {
@@ -15,14 +16,15 @@ public class ClienteRegistrato {
     private String password;
     private String passwordConfirm;
     private Set authorities;
-    private Date dataDiNascita;
+    private String dataDiNascita;
     private int effrazioni;
     private boolean verificato;
     private boolean bloccato;
 
     private ArrayList<Prenotazione> prenotazioni;
 
-    public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, String dataDiNascita,
+
+     public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, String dataDiNascita,
             int effrazioni, boolean verificato, boolean bloccato) throws ParseException {
         this.nome = nome;
         this.cognome = cognome;
@@ -31,11 +33,12 @@ public class ClienteRegistrato {
         this.effrazioni = effrazioni;
         this.verificato = verificato;
         this.bloccato = bloccato;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        this.dataDiNascita = sdf.parse(dataDiNascita);
+        this.dataDiNascita = dataDiNascita;
+        Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority("cliente"));
 
         prenotazioni = new ArrayList<>();
-    }
+    } 
 
     public ClienteRegistrato() {
     }
@@ -104,17 +107,17 @@ public class ClienteRegistrato {
         this.authorities = authorities;
     }
 
-    public Date getDataDiNascita() {
+    public String getDataDiNascita() {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(String dataDiNascita) throws ParseException{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        this.dataDiNascita = sdf.parse(dataDiNascita);
-    }
 
     public int getEffrazioni() {
         return effrazioni;
+    }
+
+    public void setDataDiNascita(String dataDiNascita) {
+        this.dataDiNascita = dataDiNascita;
     }
 
     public void setEffrazioni(int effrazioni) {

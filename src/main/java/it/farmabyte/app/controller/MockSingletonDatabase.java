@@ -3,6 +3,8 @@ package it.farmabyte.app.controller;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import it.farmabyte.app.model.*;
@@ -12,6 +14,8 @@ import it.farmabyte.app.model.*;
 public class MockSingletonDatabase {
     
     private static MockSingletonDatabase dbInstance;
+
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     private ArrayList<Prenotazione> prenotazioni;
     private ArrayList<Farmaco> farmaci;
@@ -67,16 +71,22 @@ public class MockSingletonDatabase {
         farmacie.add(farmaciaDM);
         farmacie.add(farmaciaMZ);
 
-        farmacisti.add(new Farmacista("Orazio", "Grinzosi", "GRNRZO43M13H703T", "orazio.grinzosi@farmacia.com", farmaciaSD));
-        farmacisti.add(new Farmacista("Alberto", "Rossi", "RSSLRT63B04G337G", "alberto.rossi@farmacia.com", farmaciaMZ));
+        farmacisti.add(new Farmacista("Orazio", "Grinzosi", "GRNRZO43M13H703T", "orazio.grinzosi@farmacia.com", farmaciaSD, bCryptPasswordEncoder.encode("password")));
+        farmacisti.add(new Farmacista("Alberto", "Rossi", "RSSLRT63B04G337G", "alberto.rossi@farmacia.com", farmaciaMZ, bCryptPasswordEncoder.encode("password")));
     }
 
     public ClienteRegistrato findByUsername(String username){
         for(int i=0; i<clienti.size(); i++){
             if(clienti.get(i).getEmail().equals(username))
                 return clienti.get(i);
-            System.out.println(clienti.get(i).getEmail());
-            System.out.println(username);
+        }
+        return null;
+    }
+
+    public Farmacista findFarmacistaByUsername(String username){
+        for(int i=0; i<farmacisti.size(); i++){
+            if(farmacisti.get(i).getEmail().equals(username))
+                return farmacisti.get(i);
         }
         return null;
     }

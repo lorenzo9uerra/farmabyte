@@ -2,6 +2,7 @@ package it.farmabyte.app.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +15,7 @@ import it.farmabyte.app.services.DbUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
+@Order(2)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -38,11 +40,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return authenticationManager();
 	}
 
-	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// in / o /home possono andare tutti, per qualunque altra sezione bisogna fare
 		// login
-		http.authorizeRequests().antMatchers("/", "/home", "/registrazione", "/resources/**").permitAll().anyRequest().authenticated()
-				.and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+		/*
+		 * http.authorizeRequests().antMatchers("/", "/home", "/registrazione",
+		 * "/resources/**", "/farmacia/login")
+		 * .permitAll().antMatchers("/nuovaprenotazione",
+		 * "/prenotazioni").hasAuthority("cliente")
+		 * .antMatchers("/farmacia/**").hasAuthority("farmacista").anyRequest().
+		 * authenticated().and().formLogin() .loginPage("/login").permitAll().and()
+		 * .logout().logoutUrl("/logout").logoutSuccessUrl("/home").deleteCookies(
+		 * "JSESSIONID") .and().exceptionHandling().accessDeniedPage("/403")
+		 * .and().csrf().disable();
+		 */
+		http.authorizeRequests().antMatchers("/", "/home", "/registrazione", "/resources/**").permitAll()
+				.antMatchers("/farmacia/login", "/farmacia_login").permitAll().antMatchers("/farmacia/**")
+				.hasAuthority("farmacista").antMatchers("/nuovaprenotazione", "/prenotazioni").hasAuthority("cliente")
+				.anyRequest().hasAuthority("cliente").and().formLogin().loginPage("/login").permitAll().and().logout()
+				.logoutUrl("/logout").logoutSuccessUrl("/home").deleteCookies("JSESSIONID").and().exceptionHandling()
+				.accessDeniedPage("/403").and().csrf().disable();
 	}
 }

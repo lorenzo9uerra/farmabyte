@@ -1,7 +1,5 @@
 package it.farmabyte.app.security;
 
-import java.util.Calendar;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -26,15 +24,15 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         ClienteRegistrato user = (ClienteRegistrato) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getEmail().contains("@") && user.getEmail().split(".").length > 0) {
-            errors.rejectValue("username", "size.password");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.email");
+        if (!user.getEmail().contains("@") || user.getEmail().split(".").length < 0) {
+            errors.rejectValue("email", "format.email");
         }
         if (userService.findByUsername(user.getEmail()) != null) {
-            errors.rejectValue("username", "duplicate.username");
+            errors.rejectValue("email", "duplicate.email");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.password");
         if (user.getPassword().length() < 8 || user.getPassword().length() > 128) {
             errors.rejectValue("password", "size.password");
         }

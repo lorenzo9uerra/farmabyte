@@ -3,15 +3,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
-    <title>Benvenuto${nomeUtente}!</title>
+    <title>Benvenuto${nomeFarmacista}!</title>
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-      <link href="${contextPath}/resources/css/clienti.css" rel="stylesheet">
-      <%@ include file="parts/header.jsp" %>  
+      <link href="${contextPath}/resources/css/farmacia.css" rel="stylesheet">
+      <%@ include file="parts/header.jsp" %>
 </head>
 <body>
-    <h2 class="hello-title">Benvenuto${nomeUtente}!</h2>
-    <a href="utente">Utente</a>
-    <a href="logout">Logout</a>
+    <h2>Benvenuto${nomeFarmacista}!</h2>
+    <a href="prenotazioniFarmacia">Prenotazioni</a>
+    <a href="farmaci">Farmaci</a>
+    <a href="utenti">Utenti</a>
+    <a href="verificaIdentita">Verifica Identità</a>
+    <a href="/farmacia/logout">Logout</a>
+
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

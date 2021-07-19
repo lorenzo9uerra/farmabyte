@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import it.farmabyte.app.controller.IGestioneAccesso;
 import it.farmabyte.app.model.ClienteRegistrato;
+import it.farmabyte.app.model.Farmacista;
 import it.farmabyte.app.security.UserValidator;
 import it.farmabyte.app.services.ISecurityService;
 import it.farmabyte.app.services.IUtenteService;
@@ -67,13 +68,39 @@ public class GestioneAccessoLogic {
         return "login";
     }
 
-    @GetMapping({ "/", })
-    public String home(Model model, Principal utente) { //Authentication invece di Principal se si vogliono più informazioni
-        if(utente == null)
+    @GetMapping(value = "/farmacia/login")
+    public String verificaCredenzialiFarmacista(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
+
+        return "loginFarmacia";
+    }
+
+    @GetMapping(value = "/farmacia")
+    public String farmacia(Model model, Principal utente){
+        Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
+        if (farmacista != null) {
+            model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
+        }
+        return "homeFarmacia";
+    }
+
+    @GetMapping({ "/", "/home"})
+    public String home(Model model, Principal utente) { // Authentication invece di Principal se si vogliono più
+                                                        // informazioni
+        if (utente == null)
             return "home";
         ClienteRegistrato cliente;
         cliente = utenteService.findByUsername(utente.getName());
-        model.addAttribute("nomeUtente", " "+cliente.getNome());
-        return "home";
+        if (cliente != null) {
+            model.addAttribute("nomeUtente", " " + cliente.getNome());
+            return "home";
+        }
+        Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
+        model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
+        return "homeFarmacia";
     }
 }
