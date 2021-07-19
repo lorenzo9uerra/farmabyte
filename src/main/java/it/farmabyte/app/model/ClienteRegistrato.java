@@ -2,9 +2,11 @@ package it.farmabyte.app.model;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 
@@ -16,7 +18,8 @@ public class ClienteRegistrato {
     private String password;
     private String passwordConfirm;
     private Set authorities;
-    private String dataDiNascita;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dataDiNascita;
     private int effrazioni;
     private boolean verificato;
     private boolean bloccato;
@@ -24,7 +27,7 @@ public class ClienteRegistrato {
     private ArrayList<Prenotazione> prenotazioni;
 
 
-     public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, String dataDiNascita,
+     public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, Date dataDiNascita,
             int effrazioni, boolean verificato, boolean bloccato) throws ParseException {
         this.nome = nome;
         this.cognome = cognome;
@@ -107,7 +110,7 @@ public class ClienteRegistrato {
         this.authorities = authorities;
     }
 
-    public String getDataDiNascita() {
+    public Date getDataDiNascita() {
         return dataDiNascita;
     }
 
@@ -115,7 +118,7 @@ public class ClienteRegistrato {
         return effrazioni;
     }
 
-    public void setDataDiNascita(String dataDiNascita) {
+    public void setDataDiNascita(Date dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
     }
 
