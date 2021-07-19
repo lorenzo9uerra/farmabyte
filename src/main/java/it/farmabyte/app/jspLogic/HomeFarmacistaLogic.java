@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes("farmacista")
 public class HomeFarmacistaLogic {
 
-
     @GetMapping("")
     public String utente(Model model,@ModelAttribute("farmacista") Farmacista farmacista) {
         model.addAttribute("farmacista", farmacista);

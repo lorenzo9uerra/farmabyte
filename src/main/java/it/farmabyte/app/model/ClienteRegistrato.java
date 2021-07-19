@@ -149,9 +149,4 @@ public class ClienteRegistrato {
         prenotazioni.add(toAdd);
     }
 
-    public Prenotazione[] elencaPrenotazioni(){
-        //TODO: controllare che funzioni correttamente
-        return prenotazioni.toArray(new Prenotazione[prenotazioni.size()]);
-    }
-
 }

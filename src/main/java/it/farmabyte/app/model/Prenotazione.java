@@ -2,6 +2,7 @@ package it.farmabyte.app.model;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Prenotazione {
@@ -10,7 +11,7 @@ public class Prenotazione {
     private boolean confermata;
     private ClienteRegistrato richiedente;
     private Farmacia farmacia;
-    private HashMap<Farmaco, Integer> farmaci;
+    private Map<Farmaco, Integer> farmaci;
 
     public String getId(){return id;}
     public void setId(String id){this.id=id;}
@@ -47,7 +48,7 @@ public class Prenotazione {
         this.farmacia = farmacia;
     }
 
-    public HashMap<Farmaco, Integer> getFarmaci() {
+    public Map<Farmaco, Integer> getFarmaci() {
         return farmaci;
     }
 
@@ -59,7 +60,7 @@ public class Prenotazione {
         farmaci = new HashMap<>();
     }
 
-    public Prenotazione(Date data, boolean confermata, ClienteRegistrato richiedente, Farmacia farmacia, HashMap<Farmaco, Integer> farmaci) {
+    public Prenotazione(Date data, boolean confermata, ClienteRegistrato richiedente, Farmacia farmacia, Map<Farmaco, Integer> farmaci) {
         this.data = data;
         this.confermata = confermata;
         this.richiedente = richiedente;

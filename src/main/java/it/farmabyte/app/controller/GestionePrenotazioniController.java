@@ -1,7 +1,8 @@
 package it.farmabyte.app.controller;
 
+import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -18,14 +19,14 @@ public class GestionePrenotazioniController extends Controller implements IGesti
     }
 
     @Override
-    public Prenotazione[] getListaPrenotazioni(ClienteRegistrato cliente) {
-        return cliente.elencaPrenotazioni();
+    public Collection<Prenotazione> getListaPrenotazioni(ClienteRegistrato cliente) {
+        return cliente.getPrenotazioni();
     }
 
 
 
     @Override
-    public Prenotazione creaPrenotazione(ClienteRegistrato cliente, Farmacia farmacia, HashMap<Farmaco, Integer> listaFarmaci) {
+    public Prenotazione creaPrenotazione(ClienteRegistrato cliente, Farmacia farmacia, Map<Farmaco, Integer> listaFarmaci) {
         
         Prenotazione result = new Prenotazione(new Date(), false, cliente, farmacia, listaFarmaci);
 

@@ -1,6 +1,7 @@
 package it.farmabyte.app.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -34,7 +35,11 @@ public class Farmacia {
         magazzino.put(toAdd, lotto);
     }
 
-    public Prenotazione[] elencaPrenotazioni(Date inizio, Date fine){
+    public void addPrenotazione(Prenotazione toAdd){
+        prenotazioni.add(toAdd);
+    }
+
+    public Collection<Prenotazione> elencaPrenotazioni(Date inizio, Date fine){
         ArrayList<Prenotazione> prenotazioniFiltrate = new ArrayList<>();
 
         for(Prenotazione prenotazione : prenotazioni){
@@ -43,7 +48,7 @@ public class Farmacia {
             }
         }
 
-        return prenotazioniFiltrate.toArray(new Prenotazione[prenotazioniFiltrate.size()]);
+        return prenotazioniFiltrate;
     }
 
     public String getId() {
