@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 public class ClienteRegistrato {
     private String nome;
@@ -15,6 +17,7 @@ public class ClienteRegistrato {
     private String password;
     private String passwordConfirm;
     private Set authorities;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataDiNascita;
     private int effrazioni;
     private boolean verificato;
@@ -22,7 +25,7 @@ public class ClienteRegistrato {
 
     private ArrayList<Prenotazione> prenotazioni;
 
-    public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, String dataDiNascita,
+    public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, Date dataDiNascita,
             int effrazioni, boolean verificato, boolean bloccato) throws ParseException {
         this.nome = nome;
         this.cognome = cognome;
@@ -31,8 +34,9 @@ public class ClienteRegistrato {
         this.effrazioni = effrazioni;
         this.verificato = verificato;
         this.bloccato = bloccato;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        this.dataDiNascita = sdf.parse(dataDiNascita);
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //this.dataDiNascita = sdf.parse(dataDiNascita_string);
+        this.dataDiNascita = dataDiNascita;
 
         prenotazioni = new ArrayList<>();
     }
@@ -108,9 +112,10 @@ public class ClienteRegistrato {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(String dataDiNascita) throws ParseException{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        this.dataDiNascita = sdf.parse(dataDiNascita);
+    public void setDataDiNascita(Date dataDiNascita) throws ParseException{
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //this.dataDiNascita = sdf.parse(dataDiNascita);
+        this.dataDiNascita = dataDiNascita;
     }
 
     public int getEffrazioni() {
