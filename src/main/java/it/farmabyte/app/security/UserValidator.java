@@ -24,7 +24,7 @@ public class UserValidator implements Validator {
         ClienteRegistrato user = (ClienteRegistrato) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getEmail().contains("@") && user.getEmail().split(".").length > 0){
+        if (user.getEmail().contains("@") && user.getEmail().split(".").length > 0) {
             errors.rejectValue("username", "Size.userForm.username");
         }
         if (userService.findByUsername(user.getEmail()) != null) {
@@ -33,17 +33,17 @@ public class UserValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
         if (user.getPassword().length() < 8 || user.getPassword().length() > 128) {
-            boolean num = false, c = true;
-            for(int i = 0; i<user.getPassword().length(); i++){
-                if(Character.isAlphabetic(user.getPassword().charAt(i)))
-                    c=true;
-                if(Character.isDigit(user.getPassword().charAt(i)))
-                    num = true;
-            }
-            if(!c || !num)
-                errors.rejectValue("password", "Size.userForm.password");
+            errors.rejectValue("password", "Size.userForm.password");
         }
-
+        boolean num = false, c = true;
+        for (int i = 0; i < user.getPassword().length(); i++) {
+            if (Character.isAlphabetic(user.getPassword().charAt(i)))
+                c = true;
+            if (Character.isDigit(user.getPassword().charAt(i)))
+                num = true;
+        }
+        if (!c || !num)
+            errors.rejectValue("password", "Chars.userForm.password");
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
             errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
         }

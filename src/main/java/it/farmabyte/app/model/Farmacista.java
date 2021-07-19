@@ -1,6 +1,5 @@
 package it.farmabyte.app.model;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
 
