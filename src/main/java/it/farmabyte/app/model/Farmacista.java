@@ -12,6 +12,13 @@ public class Farmacista {
     private String email;
     private Farmacia farmacia;
     
+    public Farmacista(String nome, String cognome, String codiceFiscale, String email) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.codiceFiscale = codiceFiscale;
+        this.email = email;
+    }
+
     public Farmacista(String nome, String cognome, String codiceFiscale, String email, Farmacia farmacia) {
         this.nome = nome;
         this.cognome = cognome;

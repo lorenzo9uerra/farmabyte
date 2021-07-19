@@ -1,5 +1,7 @@
 package it.farmabyte.app.controller;
 
+import java.util.Collection;
+
 import org.springframework.stereotype.Service;
 
 import it.farmabyte.app.model.ClienteRegistrato;
@@ -12,8 +14,8 @@ public class UtentiController extends Controller implements IUtenti{
     }
 
     @Override
-    public ClienteRegistrato[] getElencoUtenti() {
-        return dbInstance.getClienti().toArray(new ClienteRegistrato[dbInstance.getClienti().size()]);
+    public Collection<ClienteRegistrato> getElencoUtenti() {
+        return dbInstance.getClienti();
     }
 
     @Override

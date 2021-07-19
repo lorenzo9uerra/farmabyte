@@ -4,6 +4,8 @@ import it.farmabyte.app.DTO.RicercaFarmaciDTO;
 import it.farmabyte.app.controller.UtentiController;
 import it.farmabyte.app.model.ClienteRegistrato;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -54,7 +56,7 @@ public class UtentiFarmaciaLogic {
         else
             utentiController.sbloccaUtente(cliente.getEmail());
 
-        ClienteRegistrato[] utenti= utentiController.getElencoUtenti( );
+        Collection<ClienteRegistrato> utenti= utentiController.getElencoUtenti( );
 
         model.addAttribute("utenti", utenti);
         model.addAttribute("cr",new ClienteRegistrato());

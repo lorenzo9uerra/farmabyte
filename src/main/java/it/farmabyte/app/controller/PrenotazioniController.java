@@ -1,5 +1,6 @@
 package it.farmabyte.app.controller;
 
+import java.util.Collection;
 import java.util.Date;
 
 import it.farmabyte.app.model.Farmacia;
@@ -7,13 +8,17 @@ import it.farmabyte.app.model.Prenotazione;
 
 public class PrenotazioniController extends Controller implements IPrenotazioni{
 
+    public PrenotazioniController(){
+        super();
+    }
+
     @Override
-    public Prenotazione[] getElencoPrenotazioni(Farmacia farmacia, Date giorno) {
+    public Collection<Prenotazione> getElencoPrenotazioni(Farmacia farmacia, Date giorno) {
         return farmacia.elencaPrenotazioni(giorno, giorno);
     }
 
     @Override
-    public Prenotazione[] getElencoPrenotazioni(Farmacia farmacia, Date inizio, Date fine) {
+    public Collection<Prenotazione> getElencoPrenotazioni(Farmacia farmacia, Date inizio, Date fine) {
         return farmacia.elencaPrenotazioni(inizio, fine);
     }
 

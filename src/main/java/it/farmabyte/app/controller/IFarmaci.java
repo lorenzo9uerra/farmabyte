@@ -1,10 +1,10 @@
 package it.farmabyte.app.controller;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import it.farmabyte.app.model.Farmaco;
 import it.farmabyte.app.model.Lotto;
 
 public interface IFarmaci {
-    public HashMap<Farmaco,Lotto> getElencoFarmaci(String idFarmacia);
+    public Map<Farmaco,Lotto> getElencoFarmaci(String idFarmacia);
 }
