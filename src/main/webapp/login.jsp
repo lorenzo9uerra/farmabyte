@@ -8,18 +8,17 @@
 <html lang="en">
   <head>
       <meta charset="utf-8">
-      <title>Log in with your account</title>
+      <title>Effettua il Login</title>
 
-      <link href="${contextPath}/../resources/css/bootstrap.min.css" rel="stylesheet">
-      <link href="${contextPath}/../resources/css/common.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/clienti.css" rel="stylesheet">
+      <%@ include file="parts/header.jsp" %>  
   </head>
 
   <body>
 
     <div class="container">
       <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log in</h2>
-
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
             <input name="username" type="text" class="form-control" placeholder="Email"
@@ -29,12 +28,12 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="${contextPath}/registrazione">Create an account</a></h4>
+            <h4 class="text-center"><a href="${contextPath}/registrazione">Non sono iscritto</a></h4>
         </div>
       </form>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="${contextPath}/../resources/js/bootstrap.min.js"></script>
+    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
   </body>
 </html>

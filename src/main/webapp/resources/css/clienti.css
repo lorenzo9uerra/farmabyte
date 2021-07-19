@@ -1,13 +1,13 @@
-body {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: #eee;
+.header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
 }
 
 .form-signin {
     max-width: 330px;
     padding: 15px;
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 .form-signin .form-signin-heading,
@@ -45,4 +45,10 @@ body {
 
 .has-error {
     color: red
+}
+
+.header{
+    box-sizing: border-box;
+    height: auto;
+    background-color: #b9dbb3;
 }

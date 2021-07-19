@@ -1,5 +1,7 @@
 package it.farmabyte.app.security;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -13,6 +15,7 @@ import it.farmabyte.app.services.UtenteService;
 public class UserValidator implements Validator {
     @Autowired
     private UtenteService userService;
+
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -47,5 +50,13 @@ public class UserValidator implements Validator {
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
             errors.rejectValue("passwordConfirm", "diff.password");
         }
+        //Non so perchè non funzioni
+/*      Calendar cal = Calendar.getInstance();
+        System.out.println(user.getDataDiNascita());
+        cal.setTime(user.getDataDiNascita());
+        cal.add(Calendar.YEAR, 16);
+        System.out.println(cal.getTime());
+        if(cal.getTime().after(Calendar.getInstance().getTime()))
+            errors.rejectValue("username", "minor.date"); */
     }
 }

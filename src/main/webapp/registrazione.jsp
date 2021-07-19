@@ -9,8 +9,9 @@
       <meta charset="utf-8">
       <title>Create an account</title>
 
-      <link href="${contextPath}/../resources/css/bootstrap.min.css" rel="stylesheet">
-      <link href="${contextPath}/../resources/css/common.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+      <link href="${contextPath}/resources/css/clienti.css" rel="stylesheet">
+      <%@ include file="parts/header.jsp" %>  
   </head>
 
   <body>
@@ -18,7 +19,6 @@
     <div class="container">
 
         <form:form method="POST" modelAttribute="userForm" class="form-signin">
-            <h2 class="form-signin-heading">Create your account</h2>
             <spring:bind path="email">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <form:input type="text" path="email" class="form-control" placeholder="Email"
@@ -74,12 +74,12 @@
                 </div>
             </spring:bind>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Registrati</button>
         </form:form>
 
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="${contextPath}/../resources/js/bootstrap.min.js"></script>
+    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
   </body>
 </html>

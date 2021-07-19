@@ -56,7 +56,7 @@ public class GestioneAccessoLogic {
         return "redirect:/";
     }
 
-    @GetMapping("/login")
+    @GetMapping(value = "/login")
     public String verificaCredenziali(Model model, String error, String logout) {
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
