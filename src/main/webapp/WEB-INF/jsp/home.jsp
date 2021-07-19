@@ -3,10 +3,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
-    <title>Hello ${utente.nome}!</title>
+    <title>Benvenuto${nomeUtente}!</title>
 </head>
 <body>
-    <h2 class="hello-title">Hello ${farmacista.nome}!</h2>
+    <h2 class="hello-title">Benvenuto${nomeUtente}!</h2>
     <a href="utente">Utente</a>
 </body>
 </html>
