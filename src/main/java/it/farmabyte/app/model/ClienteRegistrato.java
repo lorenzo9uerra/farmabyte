@@ -1,6 +1,5 @@
 package it.farmabyte.app.model;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -28,7 +27,7 @@ public class ClienteRegistrato {
 
 
      public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, Date dataDiNascita,
-            int effrazioni, boolean verificato, boolean bloccato) throws ParseException {
+            int effrazioni, boolean verificato, boolean bloccato){
         this.nome = nome;
         this.cognome = cognome;
         this.codiceFiscale = codiceFiscale;

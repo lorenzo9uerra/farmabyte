@@ -2,10 +2,13 @@ package it.farmabyte.app.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import it.farmabyte.app.model.*;
 
@@ -73,6 +76,15 @@ public class MockSingletonDatabase {
 
         farmacisti.add(new Farmacista("Orazio", "Grinzosi", "GRNRZO43M13H703T", "orazio.grinzosi@farmacia.com", farmaciaSD, bCryptPasswordEncoder.encode("password")));
         farmacisti.add(new Farmacista("Alberto", "Rossi", "RSSLRT63B04G337G", "alberto.rossi@farmacia.com", farmaciaMZ, bCryptPasswordEncoder.encode("password")));
+        
+        ClienteRegistrato benson = new ClienteRegistrato("Riccardo", "Benzoni", "BNZRCR66B07H501D", 
+                            "riccardo.benzoni@studio.unibo.it", new Date(1966, 2, 7), 0, true, false);
+        benson.setPassword(bCryptPasswordEncoder.encode("password1"));
+        benson.setPasswordConfirm("password1");
+        Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority("cliente"));
+        benson.setAuthorities(grantedAuthorities);
+        clienti.add(benson);
     }
 
     public ClienteRegistrato findByUsername(String username){

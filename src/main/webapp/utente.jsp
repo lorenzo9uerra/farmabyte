@@ -8,7 +8,7 @@
 <body>
     <h2 class="hello-title">Hello ${utente.nome}!</h2>
 
-    <form:form action="/utente" method="post" modelAttribute="utente1">
+    <form:form action="/utente" method="post" modelAttribute="utente">
         <form:label path="nome">Book Name: </form:label> <form:input type="text" path="nome"/>
         <input type="submit" value="submit"/>
     </form:form>

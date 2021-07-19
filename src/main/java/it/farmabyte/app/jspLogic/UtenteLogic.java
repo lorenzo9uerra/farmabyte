@@ -1,8 +1,12 @@
 
 package it.farmabyte.app.jspLogic;
-import it.farmabyte.app.controller.RicercaFarmaciController;
+import it.farmabyte.app.controller.IRicercaFarmaci;
 import it.farmabyte.app.model.ClienteRegistrato;
+import it.farmabyte.app.services.IUtenteService;
 import it.farmabyte.app.services.UtenteService;
+
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -18,27 +22,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UtenteLogic {
 
     @Autowired
-    private RicercaFarmaciController ricercaFarmaciController;
+    private IRicercaFarmaci ricercaFarmaciController;
 
-    ClienteRegistrato u;
+    @Autowired
+    private IUtenteService utenteService;
 
     @GetMapping("")
-    public String utente(Model model) {
-        this.u = new ClienteRegistrato();
+    public String utente(Model model, Principal utente) {
 
-        u.setNome("Marina");
-        ClienteRegistrato u1 = new ClienteRegistrato();
-        System.out.println("ciao" + u.getNome());
-        model.addAttribute("utente", u);
-        model.addAttribute("utente1",u1);
+        //this.u = new ClienteRegistrato();
+        //u.setNome("Marina");
+        //ClienteRegistrato u1 = new ClienteRegistrato();
+        if (utente == null)
+            return "home";
+        ClienteRegistrato cliente;
+        cliente = utenteService.findByUsername(utente.getName());
+        
+        System.out.println("ciao " + cliente.getNome());
+        model.addAttribute("utente", cliente);
+        //model.addAttribute("utente1",u1);
         return "utente";
     }
 
     @PostMapping("")
     public String setName(@ModelAttribute ClienteRegistrato utente, Model model){
-        model.addAttribute("utente1",utente);
-        model.addAttribute("utente",u);
-        System.out.println("ciao" + utente.getNome());
+        model.addAttribute("utente", utente);
+        System.out.println("ciao " + utente.getNome());
         return "utente";
     }
 

@@ -31,7 +31,7 @@ public class HomeFarmacistaLogic {
 
     @ModelAttribute("farmacista")
     public Farmacista farmacista(){
-        return new Farmacista("Gino", "veffo", "CCa44","email@gmail.it");
+        return new Farmacista("Gino", "veffo", "CCa44","email@gmail.it", "password");
     }
 
 }
