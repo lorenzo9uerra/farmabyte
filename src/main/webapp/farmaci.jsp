@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello ${utente.nome}!</title>
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/clienti.css" rel="stylesheet">
 </head>
 <body>
-    <h2 class="hello-title">Hello ${farmacista.nome}!</h2>
-    <a href="utente">Utente</a>
+    <section class="header">
+        <h1>Faramaci</h1>
+    </section>
 </body>
 </html>

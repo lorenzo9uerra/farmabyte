@@ -111,7 +111,6 @@ public class ClienteRegistrato {
         return dataDiNascita;
     }
 
-
     public int getEffrazioni() {
         return effrazioni;
     }

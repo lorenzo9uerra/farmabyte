@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Prenotazioni</title>
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/clienti.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Prenotazioni</h1>
+    <section class="header">
+        <h1>Prenotazioni</h1>
+    </section>
     <h2>Oggi:</h2>
     <table>
                 <tbody>
