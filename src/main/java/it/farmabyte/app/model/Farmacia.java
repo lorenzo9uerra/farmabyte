@@ -34,6 +34,10 @@ public class Farmacia {
         magazzino.put(toAdd, lotto);
     }
 
+    public void addPrenotazione(Prenotazione toAdd){
+        prenotazioni.add(toAdd);
+    }
+
     public Prenotazione[] elencaPrenotazioni(Date inizio, Date fine){
         ArrayList<Prenotazione> prenotazioniFiltrate = new ArrayList<>();
 

@@ -1,6 +1,8 @@
 package it.farmabyte.app.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,43 @@ public class MockSingletonDatabase {
         farmacie = new ArrayList<>();
         clienti = new ArrayList<>();
         farmacisti = new ArrayList<>();
+
+        Farmaco aspirina = new Farmaco("AICKL1134LP", "ASPIRINA 20 mg");
+        Farmaco collirio = new Farmaco("BNJKA9589OE", "COLLIRIO AB&C");
+        Farmaco oki = new Farmaco("NKNJS8457BB", "OKI 15 mg");
+        Farmaco tachipirina = new Farmaco("AJSNV1247KG", "TACHIPIRINA 20 mg");
+        Farmaco gaviscon = new Farmaco("AJSNV1247KG", "GAVISCON 200 ml");
+
+        farmaci.add(aspirina);
+        farmaci.add(collirio);
+        farmaci.add(oki);
+        farmaci.add(tachipirina);
+        farmaci.add(gaviscon);
+
+        Farmacia farmaciaSD = new Farmacia("BO1GRBZ1", "Farmacia San Domenico", 
+        "BO", "Bologna", "Via Garibaldi", 1);
+        Farmacia farmaciaTV = new Farmacia("BO2TVNZ1", "Farmacia Tavernari", 
+        "BO", "Bologna", "Via d'Azeglio", 88);
+        Farmacia farmaciaDM = new Farmacia("BO3MLLZ1", "Farmacia dei Mille", 
+        "BO", "Bologna", "Via dei Mille", 7);
+        Farmacia farmaciaMZ = new Farmacia("BO4MZZZ2", "Farmacia Mazzini", 
+        "BO", "Bologna", "Via Mazzini", 95);
+
+        farmaciaSD.addFarmaco(aspirina, new Lotto(245, new Date(2022, 9, 14)));
+        farmaciaSD.addFarmaco(collirio, new Lotto(300, new Date(2024, 11, 23)));
+        farmaciaSD.addFarmaco(oki, new Lotto(450, new Date(2022, 7, 9)));
+
+        farmaciaMZ.addFarmaco(oki, new Lotto(129, new Date(2022, 2, 12)));
+        farmaciaMZ.addFarmaco(tachipirina, new Lotto(97, new Date(2024, 4, 5)));
+        farmaciaMZ.addFarmaco(gaviscon, new Lotto(156, new Date(2023, 12, 9)));
+
+        farmacie.add(farmaciaSD);
+        farmacie.add(farmaciaTV);
+        farmacie.add(farmaciaDM);
+        farmacie.add(farmaciaMZ);
+
+        farmacisti.add(new Farmacista("Orazio", "Grinzosi", "GRNRZO43M13H703T", "orazio.grinzosi@farmacia.com", farmaciaSD));
+        farmacisti.add(new Farmacista("Alberto", "Rossi", "RSSLRT63B04G337G", "alberto.rossi@farmacia.com", farmaciaMZ));
     }
 
     public ClienteRegistrato findByUsername(String username){
