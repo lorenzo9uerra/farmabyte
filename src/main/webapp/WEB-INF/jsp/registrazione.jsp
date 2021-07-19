@@ -27,6 +27,38 @@
                 </div>
             </spring:bind>
 
+            <spring:bind path="nome">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input type="text" path="nome" class="form-control" placeholder="Nome"
+                                autofocus="true"></form:input>
+                    <form:errors path="nome"></form:errors>
+                </div>
+            </spring:bind>
+
+            <spring:bind path="cognome">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input type="text" path="cognome" class="form-control" placeholder="Cognome"
+                                autofocus="true"></form:input>
+                    <form:errors path="cognome"></form:errors>
+                </div>
+            </spring:bind>
+
+            <spring:bind path="dataDiNascita">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input type="date" path="dataDiNascita" class="form-control" placeholder="Data di Nascita"
+                                autofocus="true"></form:input>
+                    <form:errors path="dataDiNascita"></form:errors>
+                </div>
+            </spring:bind>
+
+            <spring:bind path="codiceFiscale">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input type="text" path="codiceFiscale" class="form-control" placeholder="Codice Fiscale"
+                                autofocus="true"></form:input>
+                    <form:errors path="codiceFiscale"></form:errors>
+                </div>
+            </spring:bind>
+
             <spring:bind path="password">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>

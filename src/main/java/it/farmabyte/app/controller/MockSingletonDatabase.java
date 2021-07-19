@@ -76,6 +76,8 @@ public class MockSingletonDatabase {
         for(int i=0; i<clienti.size(); i++){
             if(clienti.get(i).getEmail().equals(username))
                 return clienti.get(i);
+            System.out.println(clienti.get(i).getEmail());
+            System.out.println(username);
         }
         return null;
     }

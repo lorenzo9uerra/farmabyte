@@ -1,5 +1,7 @@
 package it.farmabyte.app.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
@@ -20,16 +22,17 @@ public class ClienteRegistrato {
 
     private ArrayList<Prenotazione> prenotazioni;
 
-    public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, Date dataDiNascita,
-            int effrazioni, boolean verificato, boolean bloccato) {
+    public ClienteRegistrato(String nome, String cognome, String codiceFiscale, String email, String dataDiNascita,
+            int effrazioni, boolean verificato, boolean bloccato) throws ParseException {
         this.nome = nome;
         this.cognome = cognome;
         this.codiceFiscale = codiceFiscale;
         this.email = email;
-        this.dataDiNascita = dataDiNascita;
         this.effrazioni = effrazioni;
         this.verificato = verificato;
         this.bloccato = bloccato;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        this.dataDiNascita = sdf.parse(dataDiNascita);
 
         prenotazioni = new ArrayList<>();
     }
@@ -105,8 +108,9 @@ public class ClienteRegistrato {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(Date dataDiNascita) {
-        this.dataDiNascita = dataDiNascita;
+    public void setDataDiNascita(String dataDiNascita) throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        this.dataDiNascita = sdf.parse(dataDiNascita);
     }
 
     public int getEffrazioni() {
