@@ -42,7 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// in / o /home possono andare tutti, per qualunque altra sezione bisogna fare
 		// login
-		http.authorizeRequests().antMatchers("/", "/home", "/registrazione", "/resources/**").permitAll().anyRequest().authenticated()
-				.and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+		//http.authorizeRequests().anyRequest().authenticated()
+		//		.and().formLogin().loginPage("/login").permitAll().and().logout().permitAll();
+		http.authorizeRequests().anyRequest().permitAll();
 	}
 }

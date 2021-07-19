@@ -3,10 +3,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
-    <title>Utenti!</title>
+    <title>Utenti</title>
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/clienti.css" rel="stylesheet">
 </head>
 <body>
-    <h1> Utenti</h1>
+    <section class="header">
+        <h1>Utenti</h1>
+    </section>
     Cerca Utente:
     <form:form action="/utenti" method="put" modelAttribute="cr">
         <form:input type="text" path="email"/>

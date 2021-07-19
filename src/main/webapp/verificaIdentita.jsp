@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Verifica identità</title>
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/clienti.css" rel="stylesheet">
 </head>
 <body>
-
-    <h1> Verifica identità</h1>
+    <section class="header">
+        <h1>Verifica Identità</h1>
+    </section>
     Cerca Utente:
      <form:form action="/verificaIdentita" method="post" modelAttribute="ricercaUtente">
         <form:input type="text" path="email"/>
