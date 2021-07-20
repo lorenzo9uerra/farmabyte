@@ -30,7 +30,7 @@ public class NuovaPrenotazioneLogic {
 
         model.addAttribute("ricercaUtente", new RicercaUtenteDTO());
         model.addAttribute("trovato","init");
-        return "nuovaPrenotazione";
+        return "verificaIdentita";
     }
 
 }

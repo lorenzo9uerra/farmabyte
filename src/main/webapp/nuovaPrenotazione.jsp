@@ -10,7 +10,6 @@
     <section class="header">
         <h1>Nuova Prenotazione</h1>
     </section>
-    Farmacia:
 
 </body>
 </html>

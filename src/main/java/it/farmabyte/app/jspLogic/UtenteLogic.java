@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 @Controller
-@RequestMapping(value = {"/home"})
-public class HomeUtenteLogic {
+@RequestMapping(value = "/utente")
+public class UtenteLogic {
 
     @Autowired
     private IRicercaFarmaci ricercaFarmaciController;
@@ -28,9 +28,11 @@ public class HomeUtenteLogic {
     private IUtenteService utenteService;
 
     @GetMapping("")
-    public String homeUtente(Model model, Principal utente) {
+    public String utente(Model model, Principal utente) {
 
-
+        //this.u = new ClienteRegistrato();
+        //u.setNome("Marina");
+        //ClienteRegistrato u1 = new ClienteRegistrato();
         if (utente == null)
             return "home";
         ClienteRegistrato cliente;
@@ -39,14 +41,14 @@ public class HomeUtenteLogic {
         System.out.println("ciao " + cliente.getNome());
         model.addAttribute("utente", cliente);
         //model.addAttribute("utente1",u1);
-        return "home";
+        return "utente";
     }
 
     @PostMapping("")
     public String setName(@ModelAttribute ClienteRegistrato utente, Model model){
         model.addAttribute("utente", utente);
         System.out.println("ciao " + utente.getNome());
-        return "home";
+        return "utente";
     }
 
 }
