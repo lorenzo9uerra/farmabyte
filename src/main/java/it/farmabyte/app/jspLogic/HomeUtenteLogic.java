@@ -2,6 +2,7 @@
 package it.farmabyte.app.jspLogic;
 import it.farmabyte.app.controller.IRicercaFarmaci;
 import it.farmabyte.app.model.ClienteRegistrato;
+import it.farmabyte.app.model.Farmacista;
 import it.farmabyte.app.services.IUtenteService;
 import it.farmabyte.app.services.UtenteService;
 
@@ -18,8 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 @Controller
-@RequestMapping(value = "/utente")
-public class UtenteLogic {
+public class HomeUtenteLogic {
 
     @Autowired
     private IRicercaFarmaci ricercaFarmaciController;
@@ -27,29 +27,31 @@ public class UtenteLogic {
     @Autowired
     private IUtenteService utenteService;
 
-    @GetMapping("")
-    public String utente(Model model, Principal utente) {
-
-        //this.u = new ClienteRegistrato();
-        //u.setNome("Marina");
-        //ClienteRegistrato u1 = new ClienteRegistrato();
-        if (utente == null)
+    @GetMapping({ "/", "/home" })
+    public String home(Model model, Principal utente) { // Authentication invece di Principal se si vogliono più
+        // informazioni
+        if (utente == null) {
+            model.addAttribute("hide", true);
             return "home";
+        }
         ClienteRegistrato cliente;
         cliente = utenteService.findByUsername(utente.getName());
-        
-        System.out.println("ciao " + cliente.getNome());
-        model.addAttribute("utente", cliente);
-        //model.addAttribute("utente1",u1);
-        return "utente";
+        if (cliente != null) {
+            model.addAttribute("nomeUtente", " " + cliente.getNome());
+            model.addAttribute("hide", false);
+            return "home";
+        }
+        Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
+        model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
+        model.addAttribute("hide", false);
+        return "homeFarmacia";
     }
 
     @PostMapping("")
     public String setName(@ModelAttribute ClienteRegistrato utente, Model model){
         model.addAttribute("utente", utente);
         System.out.println("ciao " + utente.getNome());
-        return "utente";
+        return "home";
     }
-
 }
             
