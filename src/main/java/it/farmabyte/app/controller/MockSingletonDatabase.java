@@ -25,6 +25,7 @@ public class MockSingletonDatabase {
     private ArrayList<Farmacia> farmacie;
     private ArrayList<ClienteRegistrato> clienti;
     private ArrayList<Farmacista> farmacisti;
+    private ArrayList<String> comuni;
 
     public static MockSingletonDatabase getDatabaseInstance(){
         if(dbInstance == null)
@@ -39,6 +40,7 @@ public class MockSingletonDatabase {
         farmacie = new ArrayList<>();
         clienti = new ArrayList<>();
         farmacisti = new ArrayList<>();
+        comuni = new ArrayList<>();
 
         Farmaco aspirina = new Farmaco("AICKL1134LP", "ASPIRINA 20 mg");
         Farmaco collirio = new Farmaco("BNJKA9589OE", "COLLIRIO AB&C");
@@ -58,8 +60,16 @@ public class MockSingletonDatabase {
         "BO", "Bologna", "Via d'Azeglio", 88);
         Farmacia farmaciaDM = new Farmacia("BO3MLLZ1", "Farmacia dei Mille", 
         "BO", "Bologna", "Via dei Mille", 7);
-        Farmacia farmaciaMZ = new Farmacia("BO4MZZZ2", "Farmacia Mazzini", 
-        "BO", "Bologna", "Via Mazzini", 95);
+        comuni.add("Bologna");
+        Farmacia farmaciaMZ = new Farmacia("LE8MAUO5", "Farmacia Mazzini", 
+        "LE", "Lecce", "Via Borsellino", 5);
+        comuni.add("Lecce");
+        Farmacia farmaciaDA = new Farmacia("GE9JOIE2", "Farmacia Danimarca", 
+        "GE", "Genova", "Via Carlo Marx", 74);
+        comuni.add("Genova");
+        Farmacia farmaciaMI = new Farmacia("MI2TDJF1", "Farmacia Lunari", 
+        "MI", "Milano", "Via Roma", 12);
+        comuni.add("Milano");
 
         farmaciaSD.addFarmaco(aspirina, new Lotto(245, new Date(2022, 9, 14)));
         farmaciaSD.addFarmaco(collirio, new Lotto(300, new Date(2024, 11, 23)));
@@ -73,6 +83,8 @@ public class MockSingletonDatabase {
         farmacie.add(farmaciaTV);
         farmacie.add(farmaciaDM);
         farmacie.add(farmaciaMZ);
+        farmacie.add(farmaciaDA);
+        farmacie.add(farmaciaMI);
 
         farmacisti.add(new Farmacista("Orazio", "Grinzosi", "GRNRZO43M13H703T", "orazio.grinzosi@farmacia.com", farmaciaSD, bCryptPasswordEncoder.encode("password")));
         farmacisti.add(new Farmacista("Alberto", "Rossi", "RSSLRT63B04G337G", "alberto.rossi@farmacia.com", farmaciaMZ, bCryptPasswordEncoder.encode("password")));
@@ -118,6 +130,11 @@ public class MockSingletonDatabase {
     public boolean insertCliente(ClienteRegistrato toInsert){
         return clienti.add(toInsert);
     }
+
+    public boolean insertComune(String toInsert){
+        return comuni.add(toInsert);
+    }
+
     public boolean insertFarmacista(Farmacista toInsert){
         return farmacisti.add(toInsert);
     }
@@ -128,6 +145,10 @@ public class MockSingletonDatabase {
 
     public ArrayList<Farmaco> getFarmaci(){
         return farmaci;
+    }
+
+    public ArrayList<String> getComuni(){
+        return comuni;
     }
 
     public ArrayList<Farmacia> getFarmacie(){

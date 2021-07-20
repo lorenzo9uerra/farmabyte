@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 * "JSESSIONID") .and().exceptionHandling().accessDeniedPage("/403")
 		 * .and().csrf().disable();
 		 */
-		http.authorizeRequests().antMatchers("/", "/home", "/registrazione", "/resources/**", "/ricercaFarmaco").permitAll()
+		http.authorizeRequests().antMatchers("/", "/home", "/registrazione", "/resources/**", "/hintFarmaco", "/hintComune").permitAll()
 				.antMatchers("/farmacia/login", "/farmacia_login").permitAll().antMatchers("/farmacia/**")
 				.hasAuthority("farmacista").antMatchers("/nuovaprenotazione", "/prenotazioni").hasAuthority("cliente")
 				.anyRequest().hasAuthority("cliente").and().formLogin().loginPage("/login").permitAll().and().logout()

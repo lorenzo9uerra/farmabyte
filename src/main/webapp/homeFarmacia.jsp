@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Benvenuto${farmacista.nome}!</title>
+    <title>FarmaByte</title>
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/farmacia.css" rel="stylesheet">
 </head>

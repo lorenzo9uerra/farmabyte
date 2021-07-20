@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 
+import it.farmabyte.app.controller.MockSingletonDatabase;
+
 public class Farmacia {
     private String id;
     private String nome;
