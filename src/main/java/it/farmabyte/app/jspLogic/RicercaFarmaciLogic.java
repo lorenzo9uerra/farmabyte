@@ -30,8 +30,8 @@ public class RicercaFarmaciLogic {
     MockSingletonDatabase mockSingletonDatabase = MockSingletonDatabase.getDatabaseInstance();
 
     @PostMapping({ "/home", "/" })
-    public String ricercaFarmaco(Model model, String farmaco, String città) {
-        Map<Farmacia, Pair<Farmaco, Lotto>> farmaciResult = ricercaFarmaci.ricercaFarmaci(città, farmaco);
+    public String ricercaFarmaco(Model model, String farmaco, String comune) {
+        Map<Farmacia, Pair<Farmaco, Lotto>> farmaciResult = ricercaFarmaci.ricercaFarmaci(comune, farmaco);
         model.addAttribute("farmaciResult", farmaciResult);
         return "home";
     }

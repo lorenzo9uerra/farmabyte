@@ -29,22 +29,40 @@
                             type="text" name="farmaco" placeholder="Nome Farmaco"><br />
                         <datalist id="list_farmaci">
                         </datalist>
-                        <label>Comune:</label>&ensp;<input id="comune" list="list_comuni" class="form-control" type="text"
-                            name="comune" placeholder="Bologna"><br />
+                        <label>Comune:</label>&ensp;<input id="comune" list="list_comuni" class="form-control"
+                            type="text" name="comune" placeholder="Bologna"><br />
                         <datalist id="list_comuni">
                         </datalist>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Cerca</button>
                     </form>
                 </div>
-                <div class="results">
-                    <c:forEach var="entry" items="${farmaciResult}">
-                        <c:out value="${entry.key.nome}" />&emsp;
-                        <c:out value="${entry.key.via}" />&emsp;
-                        <c:out value="${entry.value.y.quantita > 10 ? 'disponibili' : 'in esaurimento'}" />&emsp;
-                        <a
-                            href="/nuovaprenotazione?farmacia=${entry.key.id}&farmaco=${entry.value.x.nome}">prenota</a></br>
-                    </c:forEach>
-                </div>
+                <c:if test="${farmaciResult != null && empty farmaciResult}">
+                    <p id="results" name="error">I farmaci selezionati
+                        non sono disponibili</p>
+                </c:if>
+                <c:if test="${not empty farmaciResult}">
+                    <div id="results">
+                        <table>
+                            <c:forEach var="entry" items="${farmaciResult}">
+                                <tr>
+                                    <td>
+                                        <c:out value="${entry.key.nome}" />
+                                    </td>
+                                    <td>
+                                        <c:out value="${entry.key.via}" />&emsp;
+                                    </td>
+                                    <td>
+                                        <c:out
+                                            value="${entry.value.y.quantita > 10 ? 'disponibili' : 'in esaurimento'}" />
+                                    </td>
+                                    <td><a
+                                            href="/nuovaPrenotazione?farmacia=${entry.key.id}&farmaco=${entry.value.x.nome}">prenota</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </c:if>
             </body>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

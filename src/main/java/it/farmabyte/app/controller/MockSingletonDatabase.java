@@ -74,6 +74,7 @@ public class MockSingletonDatabase {
         farmaciaSD.addFarmaco(aspirina, new Lotto(245, new Date(2022, 9, 14)));
         farmaciaSD.addFarmaco(collirio, new Lotto(300, new Date(2024, 11, 23)));
         farmaciaSD.addFarmaco(oki, new Lotto(450, new Date(2022, 7, 9)));
+        farmaciaTV.addFarmaco(oki, new Lotto(2, new Date(2021, 12, 1)));
 
         farmaciaMZ.addFarmaco(oki, new Lotto(129, new Date(2022, 2, 12)));
         farmaciaMZ.addFarmaco(tachipirina, new Lotto(97, new Date(2024, 4, 5)));
