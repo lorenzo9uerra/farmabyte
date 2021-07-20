@@ -56,7 +56,7 @@
                                             value="${entry.value.y.quantita > 10 ? 'disponibili' : 'in esaurimento'}" />
                                     </td>
                                     <td><a
-                                            href="/nuovaPrenotazione?farmacia=${entry.key.id}&farmaco=${entry.value.x.nome}">prenota</a>
+                                            href="/nuovaPrenotazione?farmacia=${entry.key.nome}&farmaco=${entry.value.x.nome}">prenota</a>
                                     </td>
                                 </tr>
                             </c:forEach>
