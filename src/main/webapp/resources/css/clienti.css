@@ -149,3 +149,34 @@ a:hover.title {
     left: 0;
     top: 30;
 }
+
+#nuovaPrenotazione{
+    margin: 30px auto;
+    max-width: 70%;
+}
+
+#nuovaPrenotazione input{
+    margin-bottom: 15px
+}
+
+#nuovaPrenotazione-builder{
+    width: 100%;
+    background-color: #DDDDDD;
+}
+
+table{
+    border-collapse: separate;
+    border-spacing: 1em;
+}
+
+table .spacer{
+    width: 2em;
+}
+
+#inviaPrenotazione{
+    padding: 9px;
+    float: right;
+    margin: 3em;
+    background-color: #ff43439b;
+    border-radius: 10px
+}
