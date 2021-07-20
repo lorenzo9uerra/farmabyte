@@ -24,7 +24,7 @@
                     <a class="${show ? 'hide' : 'show'}" href="login"><button class="button">Login</button></a>
                 </div>
                 <div class="container">
-                    <form action="home" method="post" class="form-ricerca" onsubmit="return validateForm()">
+                    <form action="/" method="post" class="form-ricerca" onsubmit="return validateForm()">
                         <label>Farmaco:</label>&ensp;<input id="farmaco" list="list_farmaci" class="form-control"
                             type="text" name="farmaco" placeholder="Nome Farmaco"><br />
                         <datalist id="list_farmaci">
