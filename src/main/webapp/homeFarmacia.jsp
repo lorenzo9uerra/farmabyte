@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
-    <title>Benvenuto ${farmacista.nome}!</title>
+    <title>Benvenuto${farmacista.nome}!</title>
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/farmacia.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -19,13 +19,22 @@
     </div>
 
     <div>
-        <h2 class="central_title">Benvenuto ${farmacista.nome}!</h2>
+        <h2 class="central_title">Benvenuto${farmacista.nome}!</h2>
     </div>
     <div class="menu">
-        <button class="button" href="prenotazioniFarmacia">Prenotazioni</button>
-        <button class="button" href="farmaci">Farmaci</button>
-        <button class="button" href="utenti">Utenti</button>
-        <button class="button" href="verificaIdentita">Verifica Identità</button>
+
+        <a href="/farmacia/prenotazioni">
+            <button class="button">Prenotazioni</button>
+        </a>
+        <a href="/farmacia/farmaci">
+        <button class="button">Farmaci</button>
+        </a>
+        <a href="/farmacia/utenti">
+            <button class="button" href="utenti">Utenti</button>
+        </a>
+        <a href="/farmacia/verificaIdentita">
+            <button class="button">Verifica Identità</button>
+        </a>
     </div>
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -19,7 +19,7 @@ import java.util.Date;
 
 @SpringBootApplication
 @Controller
-@RequestMapping(value = "/verificaIdentita")
+@RequestMapping(value = "/farmacia/verificaIdentita")
 public class VerificaIdentitaLogic {
 
     @Autowired

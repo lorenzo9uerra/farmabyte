@@ -14,10 +14,20 @@
     max-width: 330px;
     padding: 15px;
     margin: 50px auto;
+    position: fixed;
+    left: 0;
+    top: 30;
 }
 
 .high_right_menu {
     max-width: 330px;
     padding: 15px;
     margin: 50px auto;
+    position: fixed;
+    right: 0;
+    top: 30;
+}
+
+.central_title {
+    float: center;
 }
