@@ -1,6 +1,7 @@
 package it.farmabyte.app.jspLogic;
 
 import it.farmabyte.app.DTO.RicercaFarmaciDTO;
+import it.farmabyte.app.controller.IUtenti;
 import it.farmabyte.app.controller.UtentiController;
 import it.farmabyte.app.model.ClienteRegistrato;
 
@@ -19,29 +20,11 @@ public class UtentiFarmaciaLogic {
 
 
     @Autowired
-    private UtentiController utentiController;
+    private IUtenti utentiController;
 
     @GetMapping("")
     public String utenti(Model model) {
-        //ClienteRegistrato[] utenti= utentiController.getElencoUtenti( );
-        ClienteRegistrato gigi= new ClienteRegistrato();
-        gigi.setNome("Gigi");
-        gigi.setCognome("Sbarulfi");
-        gigi.setCodiceFiscale("AAVV55423");
-        gigi.setEmail("gigi@gmail.com");
-        gigi.setEffrazioni(2);
-        gigi.setBloccato(false);
-
-        ClienteRegistrato gigi1= new ClienteRegistrato();
-        gigi1.setNome("Gigione");
-        gigi1.setCognome("Sbarulfone");
-        gigi1.setCodiceFiscale("AAVV55423ZZZZZZZZZZZ");
-        gigi1.setEmail("giggino@gmail.com");
-        gigi1.setEffrazioni(1);
-        gigi1.setBloccato(true);
-        ClienteRegistrato[] utenti= new ClienteRegistrato[2];
-        utenti[0]=gigi;
-        utenti[1]=gigi1;
+        Collection<ClienteRegistrato> utenti= utentiController.getElencoUtenti( );
 
         model.addAttribute("utenti", utenti);
         model.addAttribute("cr",new ClienteRegistrato());
