@@ -80,7 +80,7 @@ public class GestioneAccessoLogic {
     }
 
     @GetMapping(value = "/farmacia")
-    public String farmacia(Model model, Principal utente){
+    public String farmacia(Model model, Principal utente) {
         Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
         if (farmacista != null) {
             model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
@@ -88,19 +88,23 @@ public class GestioneAccessoLogic {
         return "homeFarmacia";
     }
 
-    @GetMapping({ "/", "/home"})
+    @GetMapping({ "/", "/home" })
     public String home(Model model, Principal utente) { // Authentication invece di Principal se si vogliono più
                                                         // informazioni
-        if (utente == null)
+        if (utente == null) {
+            model.addAttribute("hide", true);
             return "home";
+        }
         ClienteRegistrato cliente;
         cliente = utenteService.findByUsername(utente.getName());
         if (cliente != null) {
             model.addAttribute("nomeUtente", " " + cliente.getNome());
+            model.addAttribute("hide", false);
             return "home";
         }
         Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
         model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
+        model.addAttribute("hide", false);
         return "homeFarmacia";
     }
 }

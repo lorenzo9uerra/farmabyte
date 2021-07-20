@@ -58,3 +58,6 @@
     margin-right: auto;
     width: 8em;
 }
+
+.hide { display: none; }
+.show { display: block; }
