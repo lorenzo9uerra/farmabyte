@@ -11,17 +11,6 @@
 </head>
 
 <body>
-    <h2 cla<div class="${hide ? 'hide' : 'show'}"><a href="logout">Logout</a></div>
-        <div class="${hide ? 'hide' : 'show'}"><a href="nuovaPrenotazione">Nuova Prenotazione</a></div>
-        <div class="${hide ? 'hide' : 'show'}"><a href="prenotazioni">Le mie Prenotazioni</a></div>
-        <div class="${hide ? 'show' : 'hide'}"><a href="login">Login</a></div>
-
-        <form>
-            <div>
-                <a class="">Per ricercare, inserisci la città di interesse:<a>
-                        <input type="text" name>ss="hello-title">Benvenuto${nomeUtente}!
-    </h2>
-    <a href="utente">Utente</a><br />
     <div class="${hide ? 'hide' : 'show'}"><a href="logout">Logout</a></div>
     <div class="${hide ? 'hide' : 'show'}"><a href="nuovaPrenotazione">Nuova Prenotazione</a></div>
     <div class="${hide ? 'hide' : 'show'}"><a href="prenotazioni">Le mie Prenotazioni</a></div>
