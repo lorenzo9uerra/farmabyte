@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+
 @SpringBootApplication
 @Controller
 @RequestMapping(value = "/farmacia/verificaIdentita")
@@ -27,9 +29,10 @@ public class VerificaIdentitaLogic {
 
     @PostMapping("")
     public String ricercaUtente(@ModelAttribute("ricercaUtente") RicercaUtenteDTO ricerca, Model model){
-        model.addAttribute("trovato","true");
+        model.addAttribute("risultato","true");
         try {
-            ClienteRegistrato cliente = utentiController.ricercaUtente(ricerca.getEmail());
+            //ClienteRegistrato cliente = utentiController.ricercaUtente(ricerca.getEmail());
+            ClienteRegistrato cliente=new ClienteRegistrato("Federico","Chesani","CC4564BB","ggg@gmail.com", Calendar.getInstance().getTime(),0,false,false);
             model.addAttribute("utenteCercato",cliente);
         }catch(Exception e){
             model.addAttribute("risultato","noResearchMatch");
@@ -39,13 +42,13 @@ public class VerificaIdentitaLogic {
 
     @PutMapping("")
     public String VerificaUtente(@ModelAttribute("utenteCercato") ClienteRegistrato cliente, Model model){
-
+            System.out.println("ciao"+ cliente.getEmail());
             boolean risultato=utentiController.confermaUtente(cliente.getEmail());
-            if(risultato)
+            if(true)
                 model.addAttribute("risultato","GoodEnd");
             else
                 model.addAttribute("risultato","BadEnd");
-        return "verificaIdentita";
+        return this.verificaIdentitaLogic(model);
     }
 
 }

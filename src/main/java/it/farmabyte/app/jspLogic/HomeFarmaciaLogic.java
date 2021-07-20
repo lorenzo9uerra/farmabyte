@@ -10,7 +10,7 @@ import java.security.Principal;
 
 @SpringBootApplication
 @Controller
-@RequestMapping(value = "/homeFarmacia")
+@RequestMapping(value = "/farmacia/homeFarmacia")
 public class HomeFarmaciaLogic {
 
     @GetMapping("")

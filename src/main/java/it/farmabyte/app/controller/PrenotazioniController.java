@@ -5,7 +5,9 @@ import java.util.Date;
 
 import it.farmabyte.app.model.Farmacia;
 import it.farmabyte.app.model.Prenotazione;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PrenotazioniController extends Controller implements IPrenotazioni{
 
     public PrenotazioniController(){

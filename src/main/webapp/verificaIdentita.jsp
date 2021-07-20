@@ -5,35 +5,40 @@
     <meta charset="UTF-8">
     <title>Verifica identità</title>
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/clienti.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/farmacia.css" rel="stylesheet">
 </head>
 <body>
     <section class="header">
         <h1>Verifica Identità</h1>
     </section>
-    Cerca Utente:
-     <form:form action="/verificaIdentita" method="post" modelAttribute="ricercaUtente">
-        <form:input type="text" path="email"/>
-        <input type="submit" value="Cerca"/>
+
+    <div class="ricercaUtente">
+
+     <form:form action="/farmacia/verificaIdentita" method="post" modelAttribute="ricercaUtente">
+        <form:label class="textVerificaIdentita" path="text">Cerca Utente: </form:label>
+        <form:input class="button inputEmail" type="text" path="email"/>
+        <button class="button bottoneRicercaUtente" type="submit">Cerca</button>
      </form:form>
-
+    </div>
+    <div class="risultato">
      <c:if test="${risultato == 'true'}">
-        ${utenteCercato.nome} ${utenteCercato.Cognome}
 
-        ${utenteCercato.codiceFiscale}
-
-        <form:form action="/verificaIdentita" method="put" modelAttribute="utenteCercato">
-                <input type="submit" value="Verifica"/>
+        <form:form action="/farmacia/verificaIdentita" method="put" modelAttribute="utenteCercato">
+            <form:label class="textVerificaIdentita" style="font-weight:normal" path="nome">${utenteCercato.cognome}</form:label>
+            <form:label class="textVerificaIdentita" style="font-weight:normal" path="cognome">${utenteCercato.nome}</form:label>
+            <form:label class="textVerificaIdentita" style="font-weight:normal" path="codiceFiscale">${utenteCercato.codiceFiscale}</form:label>
+                <form:button class="button bottoneRicercaUtente" type="submit" >Verifica</form:button>
         </form:form>
      </c:if>
      <c:if test="${risultato == 'noResearchMatch'}">
-          La ricerca non ha prodotto nessun risultato
+          <h3 class="textVerificaIdentita">La ricerca non ha prodotto nessun risultato</h3>
      </c:if>
      <c:if test="${risultato == 'GoodEnd'}">
-        "L'utente è stato verificato"
+        <h3 class="textVerificaIdentita">"L'utente è stato verificato"</h3>
      </c:if>
      <c:if test="${risultato == 'BadEnd'}">
-          Si è presentato un errore
+          <h3 class="textVerificaIdentita">Si è presentato un errore</h3>
      </c:if>
+     </div>
 </body>
 </html>
