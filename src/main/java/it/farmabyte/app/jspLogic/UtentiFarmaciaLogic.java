@@ -1,8 +1,6 @@
 package it.farmabyte.app.jspLogic;
 
-import it.farmabyte.app.DTO.RicercaFarmaciDTO;
 import it.farmabyte.app.controller.IUtenti;
-import it.farmabyte.app.controller.UtentiController;
 import it.farmabyte.app.model.ClienteRegistrato;
 
 import java.util.Collection;

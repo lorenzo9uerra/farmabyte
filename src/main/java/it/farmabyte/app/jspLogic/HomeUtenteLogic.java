@@ -1,11 +1,9 @@
 
 package it.farmabyte.app.jspLogic;
 
-import it.farmabyte.app.controller.IRicercaFarmaci;
 import it.farmabyte.app.model.ClienteRegistrato;
 import it.farmabyte.app.model.Farmacista;
 import it.farmabyte.app.services.IUtenteService;
-import it.farmabyte.app.services.UtenteService;
 
 import java.security.Principal;
 
