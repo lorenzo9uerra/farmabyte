@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
 @Controller
-@RequestMapping(value = "/utenti")
+@RequestMapping(value = "/farmacia/utenti")
 public class UtentiFarmaciaLogic {
 
 

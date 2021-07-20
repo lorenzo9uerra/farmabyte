@@ -9,7 +9,26 @@
     padding: 15px;
     margin: 50px auto;
 }
+.ricercaUtente {
+        padding: 15px;
+        margin: 50px auto;
+}
+.bottoneRicercaUtente {
+    max-width: 240px;
+}
+.inputEmail {
+    max-width: 330px;
+}
+.textVerificaIdentita {
+    font-size: 24px;
+    display: ruby-base-container;
+}
+.risultato {
+            padding: 15px;
+            margin: auto;
+            width: 50%;
 
+}
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;
