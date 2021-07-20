@@ -34,9 +34,8 @@ public class PrenotazioniClienteLogic {
     @GetMapping("")
     public String prenotazioni(Model model, Principal utente) {
 
-            Collection<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
-            //gestionePrenotazioniController.getListaPrenotazioni(utenteService.findByUsername(utente.getName()));
-            model.addAttribute("prenotazioni",prenotazioni);
+        Collection<Prenotazione> prenotazioni=gestionePrenotazioniController.getListaPrenotazioni(utenteService.findByUsername(utente.getName()));
+        model.addAttribute("prenotazioni",prenotazioni);
 
         return "prenotazioniCliente";
     }

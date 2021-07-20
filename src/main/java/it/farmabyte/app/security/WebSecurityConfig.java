@@ -54,11 +54,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 * "JSESSIONID") .and().exceptionHandling().accessDeniedPage("/403")
 		 * .and().csrf().disable();
 		 */
-		http.authorizeRequests().antMatchers("/", "/home", "/registrazione", "/resources/**").permitAll()
-				.antMatchers("/farmacia/login", "/farmacia_login").permitAll().antMatchers("/farmacia/**")
-				.hasAuthority("farmacista").antMatchers("/nuovaprenotazione", "/prenotazioni").hasAuthority("cliente")
-				.anyRequest().hasAuthority("cliente").and().formLogin().loginPage("/login").permitAll().and().logout()
-				.logoutUrl("/logout").logoutSuccessUrl("/home").deleteCookies("JSESSIONID").and().exceptionHandling()
-				.accessDeniedPage("/403").and().csrf().disable();
+		//http.authorizeRequests().antMatchers("/", "/home", "/registrazione", "/resources/**").permitAll()
+		//		.antMatchers("/farmacia/login", "/farmacia_login").permitAll().antMatchers("/farmacia/**")
+		//		.hasAuthority("farmacista").antMatchers("/nuovaprenotazione", "/prenotazioni").hasAuthority("cliente")
+		//		.anyRequest().hasAuthority("cliente").and().formLogin().loginPage("/login").permitAll().and().logout()
+		//		.logoutUrl("/logout").logoutSuccessUrl("/home").deleteCookies("JSESSIONID").and().exceptionHandling()
+		//		.accessDeniedPage("/403").and().csrf().disable();
+		http.authorizeRequests().anyRequest().permitAll();
 	}
 }
