@@ -54,7 +54,7 @@
 }
 
 .hello-title{
-    margin-left: auto;
+    margin-left: 60px;
     margin-right: auto;
     width: 8em;
 }
@@ -63,7 +63,75 @@
 .show { display: block; }
 
 .menu {
-max-width: 330px;
-padding: 15px;
-margin: 50px auto;
+    max-width: 330px;
+    padding: 15px;
+    margin-left: 35px;
+}
+
+.button {
+    /*color: #fff;
+    background-color: #337ab7;
+    */
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 6px;
+    line-height: 1.3333333;
+    font-size: 18px;
+    padding: 10px 16px;
+}
+
+.high_left_menu {
+    max-width: 330px;
+    padding: 15px;
+    margin: 50px auto;
+    position: fixed;
+    left: 0;
+    top: 30;
+}
+
+.high_right_menu {
+    max-width: 330px;
+    padding: 15px;
+    margin: 50px auto;
+    position: fixed;
+    right: 0;
+    top: 30;
+}
+
+.central_title {
+    float: center;
+}
+
+a:link.show {
+color: black;
+}
+
+/* visited link */
+a:visited.show {
+color: black;
+}
+
+/* mouse over link */
+a:hover.show {
+color: rgb(76, 95, 112);
+}
+
+a.title {
+    color: #303030;
+    text-decoration: none;
+}
+
+a:hover.title {
+    color: rgb(75, 75, 75);
+    text-decoration: none;
+}
+
+.logout-button {
+    max-width: 330px;
+    padding: 15px;
+    margin: 50px auto;
+    position: absolute;
+    right: 0;
+    top: -55px;
 }

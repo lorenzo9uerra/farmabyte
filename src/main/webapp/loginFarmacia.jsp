@@ -12,7 +12,7 @@
 
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/farmacia.css" rel="stylesheet">
-      <%@ include file="parts/header.jsp" %>  
+      <%@ include file="parts/headerFarmacia.jsp" %>  
   </head>
 
   <body>

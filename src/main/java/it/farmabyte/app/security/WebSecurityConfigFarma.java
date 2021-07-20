@@ -19,10 +19,10 @@ public class WebSecurityConfigFarma extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// in / o /home possono andare tutti, per qualunque altra sezione bisogna fare
 		// login
-		http.antMatcher("/farmacia/**").authorizeRequests().antMatchers("/farmacia/login", "/farmacia_login").permitAll().antMatchers("/farmacia/**")
+		http.antMatcher("/farmacia/**").authorizeRequests().antMatchers("/farmacia/login").permitAll().antMatchers("/farmacia/**")
 				.hasAuthority("farmacista").and().formLogin()
 				.loginPage("/farmacia/login").failureUrl("/farmacia/login?error=loginError").defaultSuccessUrl("/farmacia").permitAll().and()
-				.logout().logoutUrl("/farmacia/logout").logoutSuccessUrl("/home").deleteCookies("JSESSIONID")
+				.logout().logoutUrl("/farmacia/logout").logoutSuccessUrl("/").deleteCookies("JSESSIONID")
 				.and().exceptionHandling().accessDeniedPage("/403")
 				.and().csrf().disable();
 	}

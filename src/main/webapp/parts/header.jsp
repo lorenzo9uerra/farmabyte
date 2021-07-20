@@ -1,3 +1,3 @@
 <section class="header">
-    <h1>FarmaByte</h1>
+    <a href="/" class="title"><h1>FarmaByte</h1></a>
 </section>

@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/farmacia/login", "/farmacia_login").permitAll().antMatchers("/farmacia/**")
 				.hasAuthority("farmacista").antMatchers("/nuovaprenotazione", "/prenotazioni").hasAuthority("cliente")
 				.anyRequest().hasAuthority("cliente").and().formLogin().loginPage("/login").permitAll().and().logout()
-				.logoutUrl("/logout").logoutSuccessUrl("/home").deleteCookies("JSESSIONID").and().exceptionHandling()
+				.logoutUrl("/logout").logoutSuccessUrl("/").deleteCookies("JSESSIONID").and().exceptionHandling()
 				.accessDeniedPage("/403").and().csrf().disable();
 	}
 }
