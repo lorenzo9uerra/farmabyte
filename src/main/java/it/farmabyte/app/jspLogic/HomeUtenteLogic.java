@@ -2,6 +2,7 @@
 package it.farmabyte.app.jspLogic;
 import it.farmabyte.app.controller.IRicercaFarmaci;
 import it.farmabyte.app.model.ClienteRegistrato;
+import it.farmabyte.app.model.Farmacista;
 import it.farmabyte.app.services.IUtenteService;
 import it.farmabyte.app.services.UtenteService;
 
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 @Controller
-@RequestMapping(value = {"/home"})
 public class HomeUtenteLogic {
 
     @Autowired
@@ -27,19 +27,24 @@ public class HomeUtenteLogic {
     @Autowired
     private IUtenteService utenteService;
 
-    @GetMapping("")
-    public String homeUtente(Model model, Principal utente) {
-
-
-        if (utente == null)
+    @GetMapping({ "/", "/home" })
+    public String home(Model model, Principal utente) { // Authentication invece di Principal se si vogliono più
+        // informazioni
+        if (utente == null) {
+            model.addAttribute("hide", true);
             return "home";
+        }
         ClienteRegistrato cliente;
         cliente = utenteService.findByUsername(utente.getName());
-        
-        System.out.println("ciao " + cliente.getNome());
-        model.addAttribute("utente", cliente);
-        //model.addAttribute("utente1",u1);
-        return "home";
+        if (cliente != null) {
+            model.addAttribute("nomeUtente", " " + cliente.getNome());
+            model.addAttribute("hide", false);
+            return "home";
+        }
+        Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
+        model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
+        model.addAttribute("hide", false);
+        return "homeFarmacia";
     }
 
     @PostMapping("")
@@ -48,6 +53,5 @@ public class HomeUtenteLogic {
         System.out.println("ciao " + utente.getNome());
         return "home";
     }
-
 }
             

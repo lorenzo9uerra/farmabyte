@@ -3,14 +3,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
-    <title>Benvenuto${nomeUtente}!</title>
+    <title>Benvenuto ${nomeUtente}!</title>
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/clienti.css" rel="stylesheet">
-      <%@ include file="parts/header.jsp" %>  
 </head>
 <body>
     <section class="header">
-        <h1>Farmabyte</h1>
+        <h1>FarmaByte</h1>
     </section>
 
     <div class="${hide ? 'hide' : 'show'}"><h2 class="title">Benvenuto ${nomeUtente}!</h2></div>
@@ -18,17 +17,17 @@
     <div class="${hide ? 'hide' : 'show'}"><a href="logout">Logout</a></div>
     <div class="${hide ? 'hide' : 'show'}"><a href="nuovaPrenotazione">Nuova Prenotazione</a></div>
     <div class="${hide ? 'hide' : 'show'}"><a href="prenotazioni">Le mie Prenotazioni</a></div>
-    <div class="${hide ? 'hide' : 'show'}"><a href="login">Login</a></div>
+    <div class="${hide ? 'show' : 'hide'}"><a href="login">Login</a></div>
 
     <form>
         <div>
-        <a class="">Per ricercare, inserisci la città di interesse:<a>
-        <input type="text">
+            <a class="">Per ricercare, inserisci la città di interesse:<a>
+            <input type="text" name>
         </div>
         <div>
                 <a class="">RicercaFarmaco</a>
-                <input type="text" onchange="">
-                </div>
+                <input type="text" >
+        </div>
     </form>
 
 </body>

@@ -3,19 +3,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
-    <title>Benvenuto${nomeFarmacista}!</title>
+    <title>Benvenuto ${farmacista.nome}!</title>
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/farmacia.css" rel="stylesheet">
-      <%@ include file="parts/header.jsp" %>
+      <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 </head>
 <body>
-    <h2>Benvenuto${nomeFarmacista}!</h2>
-    <a href="prenotazioniFarmacia">Prenotazioni</a>
-    <a href="farmaci">Farmaci</a>
-    <a href="utenti">Utenti</a>
-    <a href="verificaIdentita">Verifica Identità</a>
-    <a href="/farmacia/logout">Logout</a>
+    <section class="header">
+        <h1>FarmaByte</h1>
+    </section>
 
+    <div class="high_left_menu"></div>
+    <div class="high_right_menu">
+       <button class="button" href="/farmacia/logout">Logout</button>
+    </div>
+
+    <div>
+        <h2 class="central_title">Benvenuto ${farmacista.nome}!</h2>
+    </div>
+    <div class="menu">
+        <button class="button" href="prenotazioniFarmacia">Prenotazioni</button>
+        <button class="button" href="farmaci">Farmaci</button>
+        <button class="button" href="utenti">Utenti</button>
+        <button class="button" href="verificaIdentita">Verifica Identità</button>
+    </div>
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

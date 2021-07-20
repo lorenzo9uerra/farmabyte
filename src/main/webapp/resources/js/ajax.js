@@ -74,7 +74,7 @@ function caricaFeed(m) {
 }
 
 
-function send(b){
+function onfarmacoChange(b){
 	counter=b.value;
 	turno=0;
 	var text = document.getElementById("parola").value;
