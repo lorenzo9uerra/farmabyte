@@ -46,4 +46,12 @@ public class Pair<X, Y> {
         result = prime * result + ((y == null) ? 0 : y.hashCode());
         return result;
     }
+
+    public X getX() {
+        return x;
+    }
+
+    public Y getY() {
+        return y;
+    }
 }
