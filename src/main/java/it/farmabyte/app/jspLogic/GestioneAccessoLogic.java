@@ -87,24 +87,4 @@ public class GestioneAccessoLogic {
         }
         return "homeFarmacia";
     }
-
-    @GetMapping({ "/", "/home" })
-    public String home(Model model, Principal utente) { // Authentication invece di Principal se si vogliono più
-                                                        // informazioni
-        if (utente == null) {
-            model.addAttribute("hide", true);
-            return "home";
-        }
-        ClienteRegistrato cliente;
-        cliente = utenteService.findByUsername(utente.getName());
-        if (cliente != null) {
-            model.addAttribute("nomeUtente", " " + cliente.getNome());
-            model.addAttribute("hide", false);
-            return "home";
-        }
-        Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
-        model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
-        model.addAttribute("hide", false);
-        return "homeFarmacia";
-    }
 }

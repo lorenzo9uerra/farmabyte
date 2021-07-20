@@ -9,10 +9,30 @@
       <%@ include file="parts/header.jsp" %>  
 </head>
 <body>
-    <h2 class="hello-title">Benvenuto${nomeUtente}!</h2>
-    <a href="utente">Utente</a>
+    <section class="header">
+        <h1>Farmabyte</h1>
+    </section>
+
+    <div class="${hide ? 'hide' : 'show'}"><h2 class="title">Benvenuto ${nomeUtente}!</h2></div>
+
     <div class="${hide ? 'hide' : 'show'}"><a href="logout">Logout</a></div>
+    <div class="${hide ? 'hide' : 'show'}"><a href="nuovaPrenotazione">Nuova Prenotazione</a></div>
+    <div class="${hide ? 'hide' : 'show'}"><a href="prenotazioni">Le mie Prenotazioni</a></div>
+    <div class="${hide ? 'hide' : 'show'}"><a href="login">Login</a></div>
+
+    <form>
+        <div>
+        <a class="">Per ricercare, inserisci la città di interesse:<a>
+        <input type="text">
+        </div>
+        <div>
+                <a class="">RicercaFarmaco</a>
+                <input type="text" onchange="">
+                </div>
+    </form>
+
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${contextPath}/resources/js/ajax.js"></script>
 </html>
