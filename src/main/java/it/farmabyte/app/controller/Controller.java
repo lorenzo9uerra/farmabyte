@@ -15,25 +15,25 @@ public class Controller {
     private static final String DEFAULT_LOG_PATH = "/var/log/farmabyte/farmabyte.log";
 
     public Controller(String logPath){
+        this.apriConnessione();
         try {
             logWriter = apriLog(logPath);
-            apriConnessione();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public Controller(){
+        this.apriConnessione();
         try {
             logWriter = apriLog(DEFAULT_LOG_PATH);
-            apriConnessione();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void apriConnessione(){
-        dbInstance = MockSingletonDatabase.getDatabaseInstance();
+        this.dbInstance = MockSingletonDatabase.getDatabaseInstance();
     }
 
     private Writer apriLog(String logPath) throws IOException{

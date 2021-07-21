@@ -5,8 +5,9 @@ import java.util.HashMap;
 import it.farmabyte.app.model.Farmaco;
 import it.farmabyte.app.model.Farmacia;
 import it.farmabyte.app.model.Lotto;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class FarmaciController extends Controller implements IFarmaci{
     
     public FarmaciController(){

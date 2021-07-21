@@ -1,6 +1,7 @@
 
 package it.farmabyte.app.jspLogic;
 import it.farmabyte.app.DTO.RicercaUtenteDTO;
+import it.farmabyte.app.DTO.VerificaIdentitaDTO;
 import it.farmabyte.app.controller.UtentiController;
 import it.farmabyte.app.model.ClienteRegistrato;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,35 +21,36 @@ public class VerificaIdentitaLogic {
     private UtentiController utentiController;
 
     @GetMapping("")
-    public String verificaIdentitaLogic(Model model) {
+    public String verificaIdentitaLogic(@RequestParam(value="email",required = false) String email,Model model) {
+        model.addAttribute("risultato","init");
+        if(email == null){
+            return "verificaIdentita";
+        }
+        if(!email.isBlank()){
+            model.addAttribute("risultato","true");
+            System.out.println(email);
+            try {
+                ClienteRegistrato cliente = utentiController.ricercaUtente(email);
+                //ClienteRegistrato cliente=new ClienteRegistrato("Federico","Chesani","CC4564BB","ggg@gmail.com", Calendar.getInstance().getTime(),0,false,false);
+                model.addAttribute("utenteCercato",cliente);
+            }catch(Exception e){
+                model.addAttribute("risultato","noResearchMatch");
+            }
+        }
 
-        model.addAttribute("ricercaUtente", new RicercaUtenteDTO());
-        model.addAttribute("trovato","init");
         return "verificaIdentita";
     }
 
     @PostMapping("")
-    public String ricercaUtente(@ModelAttribute("ricercaUtente") RicercaUtenteDTO ricerca, Model model){
-        model.addAttribute("risultato","true");
-        try {
-            //ClienteRegistrato cliente = utentiController.ricercaUtente(ricerca.getEmail());
-            ClienteRegistrato cliente=new ClienteRegistrato("Federico","Chesani","CC4564BB","ggg@gmail.com", Calendar.getInstance().getTime(),0,false,false);
-            model.addAttribute("utenteCercato",cliente);
-        }catch(Exception e){
-            model.addAttribute("risultato","noResearchMatch");
-        }
-        return "verificaIdentita";
-    }
-
-    @PutMapping("")
-    public String VerificaUtente(@ModelAttribute("utenteCercato") ClienteRegistrato cliente, Model model){
-            System.out.println("ciao"+ cliente.getEmail());
-            boolean risultato=utentiController.confermaUtente(cliente.getEmail());
+    public String VerificaUtente(@RequestParam(value="email",required = false) String email, Model model){
+            System.out.println(email);
+            //if(utentiController.confermaUtente(email))
             if(true)
                 model.addAttribute("risultato","GoodEnd");
             else
                 model.addAttribute("risultato","BadEnd");
-        return this.verificaIdentitaLogic(model);
+        model.addAttribute("ricercaUtente", new RicercaUtenteDTO());
+        return "verificaIdentita";
     }
 
 }
