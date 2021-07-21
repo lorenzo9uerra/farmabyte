@@ -10,18 +10,27 @@
 </head>
 <body>
     <section class="header">
-        <h1>Elenco Farmaci</h1>
+        <a href="/farmacia" class="title"><h1>Elenco Farmaci</h1></a>
     </section>
+    <div class="logout-button">
+        <a href="/farmacia/logout"><button class="button">Logout</button></a>
+    </div>
     <c:if test="${not empty farmaci}">
-        <div id="results">
+        <div class="elencoFarmaci">
             <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>ID</th>
+                    <th>Quantità</th>
+                    <th>Scadenza</th>
+                </tr>
                 <c:forEach var="entry" items="${farmaci}">
                     <tr>
                         <td>
-                            <c:out value="${entry.key.nome}" />&emsp;
+                            <c:out value="${entry.key.nome}" />
                         </td>
                         <td>
-                            <c:out value="${entry.key.id}" />&emsp;
+                            <c:out value="${entry.key.id}" />
                         </td>
                         <td>
                             ${entry.value.quantita}&emsp;

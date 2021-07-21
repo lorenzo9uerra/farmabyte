@@ -17,7 +17,7 @@ import it.farmabyte.app.model.*;
 //Non dovrebbe servire
 @Service
 public class MockSingletonDatabase {
-    
+
     private static MockSingletonDatabase dbInstance;
 
     BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -29,14 +29,14 @@ public class MockSingletonDatabase {
     private ArrayList<Farmacista> farmacisti;
     private ArrayList<String> comuni;
 
-    public static MockSingletonDatabase getDatabaseInstance(){
-        if(dbInstance == null)
+    public static MockSingletonDatabase getDatabaseInstance() {
+        if (dbInstance == null)
             dbInstance = new MockSingletonDatabase();
-            
+
         return dbInstance;
     }
 
-    private MockSingletonDatabase(){
+    private MockSingletonDatabase() {
         prenotazioni = new ArrayList<>();
         farmaci = new ArrayList<>();
         farmacie = new ArrayList<>();
@@ -56,21 +56,15 @@ public class MockSingletonDatabase {
         farmaci.add(tachipirina);
         farmaci.add(gaviscon);
 
-        Farmacia farmaciaSD = new Farmacia("BO1GRBZ1", "Farmacia San Domenico", 
-        "BO", "Bologna", "Via Garibaldi", 1);
-        Farmacia farmaciaTV = new Farmacia("BO2TVNZ1", "Farmacia Tavernari", 
-        "BO", "Bologna", "Via d'Azeglio", 88);
-        Farmacia farmaciaDM = new Farmacia("BO3MLLZ1", "Farmacia dei Mille", 
-        "BO", "Bologna", "Via dei Mille", 7);
+        Farmacia farmaciaSD = new Farmacia("BO1GRBZ1", "Farmacia San Domenico", "BO", "Bologna", "Via Garibaldi", 1);
+        Farmacia farmaciaTV = new Farmacia("BO2TVNZ1", "Farmacia Tavernari", "BO", "Bologna", "Via d'Azeglio", 88);
+        Farmacia farmaciaDM = new Farmacia("BO3MLLZ1", "Farmacia dei Mille", "BO", "Bologna", "Via dei Mille", 7);
         comuni.add("Bologna");
-        Farmacia farmaciaMZ = new Farmacia("LE8MAUO5", "Farmacia Mazzini", 
-        "LE", "Lecce", "Via Borsellino", 5);
+        Farmacia farmaciaMZ = new Farmacia("LE8MAUO5", "Farmacia Mazzini", "LE", "Lecce", "Via Borsellino", 5);
         comuni.add("Lecce");
-        Farmacia farmaciaDA = new Farmacia("GE9JOIE2", "Farmacia Danimarca", 
-        "GE", "Genova", "Via Carlo Marx", 74);
+        Farmacia farmaciaDA = new Farmacia("GE9JOIE2", "Farmacia Danimarca", "GE", "Genova", "Via Carlo Marx", 74);
         comuni.add("Genova");
-        Farmacia farmaciaMI = new Farmacia("MI2TDJF1", "Farmacia Lunari", 
-        "MI", "Milano", "Via Roma", 12);
+        Farmacia farmaciaMI = new Farmacia("MI2TDJF1", "Farmacia Lunari", "MI", "Milano", "Via Roma", 12);
         comuni.add("Milano");
 
         farmaciaSD.addFarmaco(aspirina, new Lotto(245, new Date(122, 9, 14)));
@@ -89,18 +83,31 @@ public class MockSingletonDatabase {
         farmacie.add(farmaciaDA);
         farmacie.add(farmaciaMI);
 
-        farmacisti.add(new Farmacista("Orazio", "Grinzosi", "GRNRZO43M13H703T", "orazio.grinzosi@farmacia.com", farmaciaSD, bCryptPasswordEncoder.encode("password")));
-        farmacisti.add(new Farmacista("Alberto", "Rossi", "RSSLRT63B04G337G", "alberto.rossi@farmacia.com", farmaciaMZ, bCryptPasswordEncoder.encode("password")));
-        
-        ClienteRegistrato benson = new ClienteRegistrato("Riccardo", "Benzoni", "BNZRCR66B07H501D", 
-                            "riccardo.benzoni@studio.unibo.it", new Date(66, 2, 7), 0, true, false);
-        benson.setPassword(bCryptPasswordEncoder.encode("password1"));
-        benson.setPasswordConfirm("password1");
+        farmacisti.add(new Farmacista("Orazio", "Grinzosi", "GRNRZO43M13H703T", "orazio.grinzosi@farmacia.com",
+                farmaciaSD, bCryptPasswordEncoder.encode("password")));
+        farmacisti.add(new Farmacista("Alberto", "Rossi", "RSSLRT63B04G337G", "alberto.rossi@farmacia.com", farmaciaMZ,
+                bCryptPasswordEncoder.encode("password")));
+
+        ClienteRegistrato benson = new ClienteRegistrato("Riccardo", "Benzoni", "BNZRCR66B07H501D",
+                "riccardo.benzoni@studio.unibo.it", new Date(66, 2, 7), 0, true, false);
+        benson.setPassword(bCryptPasswordEncoder.encode("password"));
+        benson.setPasswordConfirm("password");
+
+        ClienteRegistrato matteo = new ClienteRegistrato("Matteo", "Montesi", "MNTMTT72B08KO98S",
+                "matteo.montesi@studio.unibo.it", new Date(72, 7, 12), 0, true, false);
+        benson.setPassword(bCryptPasswordEncoder.encode("password"));
+        benson.setPasswordConfirm("password");
+
+        ClienteRegistrato paul = new ClienteRegistrato("Paul", "Niceview", "PALNCV70B25I241A",
+                "paul.niceview@unibo.it", new Date(70, 2, 5), 0, true, false);
+        benson.setPassword(bCryptPasswordEncoder.encode("password"));
+        benson.setPasswordConfirm("password");
 
         // mock prenotazioni per benson
         Map<Farmaco, Integer> farmaci = new HashMap<>();
         farmaci.put(new Farmaco("JHBASFS", "ASPIRINA 20mg"), 2);
-        Prenotazione prenotazione = new Prenotazione("BOQJFNKASIU", new Date(121, 7, 30), false, benson, farmaciaDA, farmaci);
+        Prenotazione prenotazione = new Prenotazione("BOQJFNKASIU", new Date(121, 7, 30), false, benson, farmaciaDA,
+                farmaci);
         prenotazioni.add(prenotazione);
         benson.addPrenotazione(prenotazione);
 
@@ -114,19 +121,21 @@ public class MockSingletonDatabase {
         grantedAuthorities.add(new SimpleGrantedAuthority("cliente"));
         benson.setAuthorities(grantedAuthorities);
         clienti.add(benson);
+        clienti.add(matteo);
+        clienti.add(paul);
     }
 
-    public ClienteRegistrato findByUsername(String username){
-        for(int i=0; i<clienti.size(); i++){
-            if(clienti.get(i).getEmail().equals(username))
+    public ClienteRegistrato findByUsername(String username) {
+        for (int i = 0; i < clienti.size(); i++) {
+            if (clienti.get(i).getEmail().equals(username))
                 return clienti.get(i);
         }
         return null;
     }
 
-    public Farmacista findFarmacistaByUsername(String username){
-        for(int i=0; i<farmacisti.size(); i++){
-            if(farmacisti.get(i).getEmail().equals(username))
+    public Farmacista findFarmacistaByUsername(String username) {
+        for (int i = 0; i < farmacisti.size(); i++) {
+            if (farmacisti.get(i).getEmail().equals(username))
                 return farmacisti.get(i);
         }
         return null;
@@ -151,67 +160,75 @@ public class MockSingletonDatabase {
         return null;
     }
 
-    public boolean insertPrenotazione(Prenotazione toInsert){
+    public boolean insertPrenotazione(Prenotazione toInsert) {
         return prenotazioni.add(toInsert);
     }
 
-    public boolean insertFarmaco(Farmaco toInsert){
+    public boolean insertFarmaco(Farmaco toInsert) {
         return farmaci.add(toInsert);
     }
 
-    public boolean insertFarmacia(Farmacia toInsert){
+    public boolean insertFarmacia(Farmacia toInsert) {
         return farmacie.add(toInsert);
     }
 
-    public boolean insertCliente(ClienteRegistrato toInsert){
+    public boolean insertCliente(ClienteRegistrato toInsert) {
         return clienti.add(toInsert);
     }
 
-    public boolean insertComune(String toInsert){
+    public boolean removeCliente(String email) {
+        for (ClienteRegistrato cliente : clienti) {
+            if (cliente.getEmail().equals(email)) {
+                clienti.remove(cliente);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean insertComune(String toInsert) {
         return comuni.add(toInsert);
     }
 
-    public boolean insertFarmacista(Farmacista toInsert){
+    public boolean insertFarmacista(Farmacista toInsert) {
         return farmacisti.add(toInsert);
     }
 
-    public ArrayList<Prenotazione> getPrenotazioni(){
+    public ArrayList<Prenotazione> getPrenotazioni() {
         return prenotazioni;
     }
 
-    public ArrayList<Farmaco> getFarmaci(){
+    public ArrayList<Farmaco> getFarmaci() {
         return farmaci;
     }
 
-    public ArrayList<String> getComuni(){
+    public ArrayList<String> getComuni() {
         return comuni;
     }
 
-    public ArrayList<Farmacia> getFarmacie(){
+    public ArrayList<Farmacia> getFarmacie() {
         return farmacie;
     }
 
-    public ArrayList<ClienteRegistrato> getClienti(){
+    public ArrayList<ClienteRegistrato> getClienti() {
         return clienti;
     }
 
-    public ArrayList<Farmacista> getFarmacisti(){
+    public ArrayList<Farmacista> getFarmacisti() {
         return farmacisti;
     }
 
-    /* (Non ricordo a cosa servisse)
-    public Prenotazione[] selectPrenotazione(ClienteRegistrato cliente, Farmacia farmacia){
-        ArrayList<Prenotazione> result = new ArrayList<>();
-        for(Prenotazione p : this.prenotazioni){
-            if(p.getRichiedente().getCodiceFiscale().equals(cliente.getCodiceFiscale()) && p.getFarmacia().getId().equals(farmacia.getId())){
-                result.add(p);
-            }
-        }
+    /*
+     * (Non ricordo a cosa servisse) public Prenotazione[]
+     * selectPrenotazione(ClienteRegistrato cliente, Farmacia farmacia){
+     * ArrayList<Prenotazione> result = new ArrayList<>(); for(Prenotazione p :
+     * this.prenotazioni){
+     * if(p.getRichiedente().getCodiceFiscale().equals(cliente.getCodiceFiscale())
+     * && p.getFarmacia().getId().equals(farmacia.getId())){ result.add(p); } }
+     * 
+     * return result.toArray(new Prenotazione[result.size()]); }
+     */
 
-        return result.toArray(new Prenotazione[result.size()]);
-    }
-    */
-
-    //e simili...
+    // e simili...
 
 }

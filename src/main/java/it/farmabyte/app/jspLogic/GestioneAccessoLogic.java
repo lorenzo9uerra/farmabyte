@@ -79,12 +79,4 @@ public class GestioneAccessoLogic {
         return "loginFarmacia";
     }
 
-    @GetMapping(value = "/farmacia")
-    public String farmacia(Model model, Principal utente) {
-        Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
-        if (farmacista != null) {
-            model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
-        }
-        return "homeFarmacia";
-    }
 }

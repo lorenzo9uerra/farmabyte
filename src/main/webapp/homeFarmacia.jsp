@@ -12,7 +12,7 @@
 <body>
     <%@ include file="parts/headerFarmacia.jsp" %>
         <a class="logout-button" href="/farmacia/logout"><button class="button">Logout</button></a>
-        <h2 class="hello-title">Benvenuto${farmacista.nome}!</h2>
+        <h2 class="hello-title">Benvenuto${nomeFarmacista}!</h2>
         </div>
         <div class="menu">
 
