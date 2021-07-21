@@ -128,6 +128,7 @@ public class NuovaPrenotazioneLogic {
             }
 
             MockSingletonDatabase.getDatabaseInstance().insertPrenotazione(prenotazione);
+            cliente.addPrenotazione(prenotazione);
 
             System.out.println(cliente.getNome() + " " + cliente.getCognome() + " " + farmacia.getNome() + " " + data
             + "\n" + prenotazione.getId() + "(firstFarmaco) : " + prenotazione.getFarmaci().keySet().toArray(new Farmaco[1])[0].getNome());
