@@ -16,6 +16,11 @@ import it.farmabyte.app.services.IUtenteService;
 @SpringBootApplication
 @Controller
 public class GestioneAccessoController implements IGestioneAccesso {
+
+    public GestioneAccessoController(){
+        super();
+    }
+
     @Autowired
     private IUtenteService uService;
 

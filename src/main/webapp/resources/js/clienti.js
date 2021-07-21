@@ -1,6 +1,66 @@
 var numFarmaci;
 var nextId;
 
+window.addEventListener("load", function () {
+
+    //Aggiungiamo dei listener ai campi in cui vogliamo l'autocompletamento
+    //Per i farmaci aggiunti in seguito questo viene fatto dinamicamente dentro le altre funz. di callback
+
+    // Add a keyup event listener to our input element
+    var inputFarmacia = document.getElementById('farmacia');
+    inputFarmacia.addEventListener("keyup", function (event) { hinter(event, "list_farmacia", "/hintFarmaco?farmaco=") });
+
+    var inputFarmaco = document.getElementById('nomeFarmaco_1');
+    inputFarmaco.addEventListener("keyup", function (event) { hinter(event, "list_comuni", "/hintComune?comune=") });
+
+    // create one global XHR object 
+    // so we can abort old requests when a new one is make
+    window.hinterXHR = new XMLHttpRequest();
+});
+
+// Autocomplete for form
+function hinter(event, element, url) {
+
+    // retireve the input element
+    var input = event.target;
+
+    // retrieve the datalist element
+    var huge_list = document.getElementById(element);
+
+    // minimum number of characters before we start to generate suggestions
+    var min_characters = 0;
+
+    if (input.value.length < min_characters) {
+        return;
+    } else {
+
+        // abort any pending requests
+        window.hinterXHR.abort();
+
+        window.hinterXHR.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // We're expecting a json response so we convert it to an object
+                var response = JSON.parse(this.responseText);
+
+                // clear any previously loaded options in the datalist
+                huge_list.innerHTML = "";
+
+                response.forEach(function (item) {
+                    // Create a new <option> element.
+                    var option = document.createElement('option');
+                    option.value = item;
+
+                    // attach the option to the datalist element
+                    huge_list.appendChild(option);
+                });
+            }
+        };
+
+        window.hinterXHR.open("GET", url + input.value, true);
+        window.hinterXHR.send()
+    }
+}
+
 function prenotazione_init(getInitialized){
     if(getInitialized)
         numFarmaci = 1;
@@ -29,14 +89,16 @@ function decreaseFarmaco(id){
 }
 
 function eliminaFarmaco(id){
-    var table = document.getElementById("farmaci-table");
+    var table = document.getElementById("farmaci-tbody");
+    //elimina direttamente la <tr>
     table.removeChild(document.getElementById(id));
 }
 
 function addFarmaco(){
-    var table = document.getElementById("farmaci-table");
+    var table = document.getElementById("farmaci-tbody");
     var toAdd = document.createElement("tr");
     var nomeFarmaco = document.createElement("td");
+    var datalist = document.createElement("datalist");
     var spacer = document.createElement("td");
     var quantitaFarmaco = document.createElement("td");
     var increaseFarmacoButton = document.createElement("td");
@@ -47,7 +109,8 @@ function addFarmaco(){
     
     nomeFarmaco.setAttribute("class", "nomeFarmaco");
     nomeFarmaco.setAttribute("id", "nomeFarmaco_" + nextId);
-    nomeFarmaco.innerText = "Farmaco" + nextId;
+    nomeFarmaco.innerHTML = '<input type="text" id="text_nomeFarmaco_' + nextId + '1" list="list_nomeFarmaco_' + nextId + '" placeholder="Nome farmaco">';
+    datalist.setAttribute("id", "list_nomeFarmaco_" + nextId);
     spacer.setAttribute("class", "spacer");
     quantitaFarmaco.setAttribute("class", "quantitaFarmaco");
     quantitaFarmaco.setAttribute("id", "quantitaFarmaco_" + nextId);
@@ -59,9 +122,8 @@ function addFarmaco(){
     eliminaFarmacoButton.setAttribute("class", "eliminaFarmacoButton");
     eliminaFarmacoButton.innerHTML = '<button type="button" onclick="eliminaFarmaco(' + nextId + ')">Elimina</button>';
 
-    nextId++;
-
     toAdd.appendChild(nomeFarmaco);
+    toAdd.appendChild(datalist);
     toAdd.appendChild(spacer);
     toAdd.appendChild(quantitaFarmaco);
     toAdd.appendChild(increaseFarmacoButton);
@@ -69,4 +131,10 @@ function addFarmaco(){
     toAdd.appendChild(eliminaFarmacoButton);
     
     table.appendChild(toAdd);
+
+    // listener per l'autocompletamento
+    
+    document.getElementById("nomeFarmaco_" + nextId).;
+
+    nextId++;
 }

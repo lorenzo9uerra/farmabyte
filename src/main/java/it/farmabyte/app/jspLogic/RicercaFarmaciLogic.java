@@ -53,12 +53,22 @@ public class RicercaFarmaciLogic {
     }
 
     @RequestMapping(value = "/hintFarmaco", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody ArrayList<String> hinterFarmaco(@RequestParam("farmaco") String farmaco) {
+    public @ResponseBody ArrayList<String> hinterFarmaco(@RequestParam("farmaco") String farmaco, 
+                                                        @RequestParam(value = "farmacia", required = false) String farmacia) {
+        
         ArrayList<String> resp = new ArrayList<String>();
-        for (int i = 0; i < mockSingletonDatabase.getFarmaci().size(); i++) {
-            if (mockSingletonDatabase.getFarmaci().get(i).getNome().toLowerCase().startsWith(farmaco.toLowerCase()))
-                resp.add(mockSingletonDatabase.getFarmaci().get(i).getNome());
+        
+        if(farmacia == null){
+            for (int i = 0; i < mockSingletonDatabase.getFarmaci().size(); i++) {
+                if (mockSingletonDatabase.getFarmaci().get(i).getNome().toLowerCase().startsWith(farmaco.toLowerCase()))
+                    resp.add(mockSingletonDatabase.getFarmaci().get(i).getNome());
+            }
         }
+        else{
+            //autocompletamento di farmaci relativi a una farmacia specifica (caso di NuovaPrenotazione)
+            
+        }
+
         return resp;
     }
 
@@ -69,6 +79,15 @@ public class RicercaFarmaciLogic {
             if (mockSingletonDatabase.getComuni().get(i).toLowerCase().startsWith(comune.toLowerCase()))
                 resp.add(mockSingletonDatabase.getComuni().get(i));
         }
+        return resp;
+    }
+
+    @RequestMapping(value = "/hintFarmacia", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody ArrayList<String> hinterFarmacia(@RequestParam("farmacia") String farmacia) {
+        ArrayList<String> resp = new ArrayList<String>();
+
+        //processing...
+
         return resp;
     }
 

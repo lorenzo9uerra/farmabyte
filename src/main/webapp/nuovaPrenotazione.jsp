@@ -15,25 +15,29 @@
     </div>
     <div id="nuovaPrenotazione">
         <form action="nuovaPrenotazione" method="post">
-            <label>Farmacia:</label><input type="text" id="farmacia" name="farmacia" class="form-control" placeholder="Nome Farmacia" value="${getInitialized? farmacia : ''}">
+            <label>Farmacia:</label><input type="text" id="farmacia" name="farmacia" list="list_farmacia" class="form-control" placeholder="Nome Farmacia" value="${getInitialized? farmacia : ''}">
+            <datalist id="list_farmacia"></datalist>
             <label>Data:</label><input type="date" min="${dataMinimaPrenotazione}" class="form-control" placeholder="Data Prenotazione"
             autofocus="true"></input>
             <label>Farmaci:</label>
             <div id="nuovaPrenotazione-builder">
                 <table id="farmaci-table">
-                    <tr>
-                        <th class="nomeFarmaco">Nome Farmaco</th>
-                        <th class="spacer" />
-                        <th class="quantitaFarmaco">Quantit&agrave;</th>
-                    </tr>
-                    <tr id="1">
-                        <td class="nomeFarmaco" id="nomeFarmaco_1">${getInitialized? firstFarmaco : 'Farmaco1'}</td>
-                        <td class="spacer" />
-                        <td class="quantitaFarmaco" id="quantitaFarmaco_1">1</td>
-                        <td class="increaseFarmacoButton"><button type="button" onClick="increaseFarmaco(1)">+</button></td>
-                        <td class="decreaseFarmacoButton"><button type="button" onClick="decreaseFarmaco(1)">-</button></td>
-                        <td class="eliminaFarmacoButton"><button type="button" onClick="eliminaFarmaco(1)">Elimina</button></td>
-                    </tr>
+                    <tbody id="farmaci-tbody">
+                        <tr>
+                            <th class="nomeFarmaco">Nome farmaco</th>
+                            <th class="spacer" />
+                            <th class="quantitaFarmaco">Quantit&agrave;</th>
+                        </tr>
+                        <tr id="1">
+                            <td class="nomeFarmaco" id="nomeFarmaco_1"><input type="text" id="text_nomeFarmaco_1" list="list_nomeFarmaco_1" value="${getInitialized? firstFarmaco : ''}" placeholder="Nome farmaco"></td>
+                            <datalist id="list_nomeFarmaco_1"></datalist>
+                            <td class="spacer" />
+                            <td class="quantitaFarmaco" id="quantitaFarmaco_1">1</td>
+                            <td class="increaseFarmacoButton"><button type="button" onClick="increaseFarmaco(1)">+</button></td>
+                            <td class="decreaseFarmacoButton"><button type="button" onClick="decreaseFarmaco(1)">-</button></td>
+                            <td class="eliminaFarmacoButton"><button type="button" onClick="eliminaFarmaco(1)">Elimina</button></td>
+                        </tr>
+                    </tbody>
                 </table>
                 <button type="button" onClick="addFarmaco()" style="margin: 1em">Aggiungi farmaco</button>
             </div>
