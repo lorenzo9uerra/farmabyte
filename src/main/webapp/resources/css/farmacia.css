@@ -26,8 +26,9 @@
 .risultato {
             padding: 15px;
             margin: auto;
-            width: 50%;
-
+            width: 60%;
+            font-size: 24px;
+            font-weight:normal;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {

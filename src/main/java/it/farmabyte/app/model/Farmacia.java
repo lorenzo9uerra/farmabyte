@@ -23,12 +23,13 @@ public class Farmacia {
         this.comune = comune;
         this.via = via;
         this.numeroCivico = numeroCivico;
-
-        magazzino = new HashMap<>();
+        this.prenotazioni=new ArrayList<Prenotazione>();
+        this.magazzino = new HashMap<>();
     }
 
     public Farmacia(){
-        magazzino = new HashMap<>();
+        this.magazzino = new HashMap<>();
+        this.prenotazioni=new ArrayList<Prenotazione>();
     }
 
     public void addFarmaco(Farmaco toAdd, Lotto lotto){

@@ -60,20 +60,22 @@ public class Prenotazione {
         farmaci = new HashMap<>();
     }
 
-    public Prenotazione(Date data, boolean confermata, ClienteRegistrato richiedente, Farmacia farmacia, Map<Farmaco, Integer> farmaci) {
+    public Prenotazione(String id, Date data, boolean confermata, ClienteRegistrato richiedente, Farmacia farmacia, Map<Farmaco, Integer> farmaci) {
         this.data = data;
         this.confermata = confermata;
         this.richiedente = richiedente;
         this.farmacia = farmacia;
+        this.id = id;
 
         this.farmaci = farmaci;
     }
 
-    public Prenotazione(Date data, boolean confermata, ClienteRegistrato richiedente, Farmacia farmacia) {
+    public Prenotazione(String id, Date data, boolean confermata, ClienteRegistrato richiedente, Farmacia farmacia) {
         this.data = data;
         this.confermata = confermata;
         this.richiedente = richiedente;
         this.farmacia = farmacia;
+        this.id = id;
 
         farmaci = new HashMap<>();
     }
