@@ -155,3 +155,8 @@ a:hover.title {
     right: 0;
     top: -55px;
 }
+
+table{
+    border-collapse: separate;
+    border-spacing: 1em;
+}

@@ -13,15 +13,21 @@
         <h1>Elenco Farmaci</h1>
     </section>
     <c:if test="${not empty farmaci}">
-        <div id="results">
+        <div class="elencoFarmaci">
             <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>ID</th>
+                    <th>Quantità</th>
+                    <th>Scadenza</th>
+                </tr>
                 <c:forEach var="entry" items="${farmaci}">
                     <tr>
                         <td>
-                            <c:out value="${entry.key.nome}" />&emsp;
+                            <c:out value="${entry.key.nome}" />
                         </td>
                         <td>
-                            <c:out value="${entry.key.id}" />&emsp;
+                            <c:out value="${entry.key.id}" />
                         </td>
                         <td>
                             ${entry.value.quantita}&emsp;
