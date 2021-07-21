@@ -8,7 +8,7 @@
 </head>
 <body onload="prenotazione_init(eval('${getInitialized}'))">
     <section class="header">
-        <h1>Nuova Prenotazione</h1>
+        <a href="/" class="title"><h1>Nuova Prenotazione</h1></a>
     </section>
     <div class="logout-button">
         <a href="logout"><button class="button">Logout</button></a>

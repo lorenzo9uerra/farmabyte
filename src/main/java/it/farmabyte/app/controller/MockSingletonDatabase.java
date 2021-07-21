@@ -90,17 +90,17 @@ public class MockSingletonDatabase {
 
         ClienteRegistrato benson = new ClienteRegistrato("Riccardo", "Benzoni", "BNZRCR66B07H501D",
                 "riccardo.benzoni@studio.unibo.it", new Date(66, 2, 7), 0, true, false);
-        benson.setPassword(bCryptPasswordEncoder.encode("password1"));
+        benson.setPassword(bCryptPasswordEncoder.encode("password"));
         benson.setPasswordConfirm("password");
 
         ClienteRegistrato matteo = new ClienteRegistrato("Matteo", "Montesi", "MNTMTT72B08KO98S",
                 "matteo.montesi@studio.unibo.it", new Date(72, 7, 12), 0, true, false);
-        benson.setPassword(bCryptPasswordEncoder.encode("password1"));
+        benson.setPassword(bCryptPasswordEncoder.encode("password"));
         benson.setPasswordConfirm("password");
 
         ClienteRegistrato paul = new ClienteRegistrato("Paul", "Niceview", "PALNCV70B25I241A",
                 "paul.niceview@unibo.it", new Date(70, 2, 5), 0, true, false);
-        benson.setPassword(bCryptPasswordEncoder.encode("password1"));
+        benson.setPassword(bCryptPasswordEncoder.encode("password"));
         benson.setPasswordConfirm("password");
 
         // mock prenotazioni per benson

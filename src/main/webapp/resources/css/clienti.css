@@ -168,7 +168,7 @@ a:hover.title {
 
 table{
     border-collapse: separate;
-    border-spacing: 1em;
+    border-spacing: 1.3em;
 }
 
 table .spacer{
@@ -186,4 +186,14 @@ table .spacer{
 input[type="date"] {
     padding: 0;
     padding-left: 10px;
+}
+
+.tablePrenotazioni{
+    font-size: 16px;
+    font-family: "Open Sans";
+    width: max-content;
+    padding: 25px;
+    margin: 30px auto;
+    background-color: #DDDDDD;
+    border-radius: 16px;
 }
