@@ -28,7 +28,7 @@
 
                         </td>
                         <td>
-                            <fmt:formatDate value="${entry.value.scadenza}" pattern="dd-MM-yyyy" />
+                            <fmt:formatDate value="${entry.value.scadenza}" pattern="dd/MM/yyyy" />
                         </td>
                     </tr>
                 </c:forEach>
