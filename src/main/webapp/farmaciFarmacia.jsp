@@ -10,8 +10,11 @@
 </head>
 <body>
     <section class="header">
-        <h1>Elenco Farmaci</h1>
+        <a href="/farmacia" class="title"><h1>Elenco Farmaci</h1></a>
     </section>
+    <div class="logout-button">
+        <a href="/farmacia/logout"><button class="button">Logout</button></a>
+    </div>
     <c:if test="${not empty farmaci}">
         <div class="elencoFarmaci">
             <table>

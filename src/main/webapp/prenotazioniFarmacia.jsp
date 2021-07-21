@@ -9,8 +9,11 @@
 </head>
 <body>
     <section class="header">
-        <h1>Prenotazioni</h1>
+        <a href="/farmacia" class="title"><h1>Prenotazioni</h1></a>
     </section>
+    <div class="logout-button">
+        <a href="/farmacia/logout"><button class="button">Logout</button></a>
+    </div>
     <h2>Oggi:</h2>
     <table>
                 <tbody>

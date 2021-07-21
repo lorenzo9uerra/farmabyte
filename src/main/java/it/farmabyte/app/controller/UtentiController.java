@@ -47,6 +47,8 @@ public class UtentiController extends Controller implements IUtenti{
         for(ClienteRegistrato cliente : dbInstance.getClienti()){
             if(cliente.getEmail().equals(email)){
                 cliente.setBloccato(true);
+                dbInstance.removeCliente(email);
+                dbInstance.insertCliente(cliente);
                 return true;
             }
         }
@@ -59,6 +61,8 @@ public class UtentiController extends Controller implements IUtenti{
         for(ClienteRegistrato cliente : dbInstance.getClienti()){
             if(cliente.getEmail().equals(email)){
                 cliente.setBloccato(false);
+                dbInstance.removeCliente(email);
+                dbInstance.insertCliente(cliente);
                 return true;
             }
         }

@@ -74,9 +74,8 @@
 }
 
 .hello-title{
-    margin-left: 60px;
-    margin-right: auto;
-    width: 8em;
+    max-width: max-content;
+    margin: 40px auto;
 }
 
 .hide { display: none; }
@@ -84,8 +83,8 @@
 
 .menu {
     max-width: 330px;
-    padding: 15px;
-    margin-left: 35px;
+    padding: 015px;
+    margin: 35px auto;
 }
 
 .button {
@@ -123,17 +122,17 @@
     float: center;
 }
 
-a:link.show {
+a:link{
 color: black;
 }
 
 /* visited link */
-a:visited.show {
+a:visited{
 color: black;
 }
 
 /* mouse over link */
-a:hover.show {
+a:hover{
 color: rgb(76, 95, 112);
 }
 
@@ -158,5 +157,82 @@ a:hover.title {
 
 table{
     border-collapse: separate;
-    border-spacing: 1em;
+    border-spacing: 1.3em;
+}
+
+.form-cercaUtenti {
+    max-width: 330px;
+    padding: 15px;
+}
+
+.form-cercaUtenti .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.containerUtenti{
+    padding: 25px;
+    font-size: 20px;
+}
+
+.torna {
+    position: absolute;
+    right:15px;
+    top: 115px;
+    padding: 10px;
+    font-size: 16px;
+    width: 200px;
+}
+
+.utentiResults{
+    max-width:max-content;
+    padding: 15px;
+    margin: 50px auto;
+    position:relative;
+    top: -160px;
+    font-family: "Open Sans";
+    font-size: 18px;
+    background-color: #DDDDDD;
+    border-radius: 16px;
+}
+.utentiResults input{
+    position:relative;
+    top:8px;
+}
+
+.elencoFarmaci{
+    padding: 10px;
+    margin: 50px auto;
+    width:max-content;
+    font-family: "Open Sans";
+    font-size: 18px;
+    background-color: #DDDDDD;
+    border-radius: 16px;
+}
+.ricercaUtente{
+    font-size: 18px;
+    font-family: "Open Sans";
+    margin: 0px;
+}
+
+.risultato{
+    padding-top: 20px;
+    top: -160px;
+    position:relative;
+    margin: 10px auto;
+    width:max-content;
+    font-family: "Open Sans";
+    font-size: 18px;
+    background-color: #DDDDDD;
+    border-radius: 16px;
+}
+.risultato .btn{
+    background-color: #ff43437b;
+    top: -3px;
+    position:relative;
 }

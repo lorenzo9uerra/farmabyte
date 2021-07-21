@@ -1,5 +1,6 @@
 
 package it.farmabyte.app.jspLogic;
+import it.farmabyte.app.model.Farmacista;
 import it.farmabyte.app.services.IUtenteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +13,20 @@ import java.security.Principal;
 
 @SpringBootApplication
 @Controller
-@RequestMapping(value = "/farmacia/")
 public class HomeFarmaciaLogic {
 
     @Autowired
     IUtenteService utenteService;
 
-    @GetMapping("")
-    public String homeFarmacia(Model model, Principal farmacista) {
-        model.addAttribute("farmacista", utenteService.findByUsername(farmacista.getName()));
+    @GetMapping(value = "/farmacia")
+    public String farmacia(Model model, Principal utente) {
+        System.out.println(utente.getName());
+        Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
+        if (farmacista != null) {
+            model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
+            System.out.println(farmacista.getNome());
+        }
         return "homeFarmacia";
     }
-
 
 }
