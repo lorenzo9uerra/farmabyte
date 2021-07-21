@@ -27,12 +27,13 @@
 }
 
 #results {
-    font-size: large;
-    font-family: Open Sans;
+    font-size:larger;
+    font-family: "Open Sans";
     width: max-content;
     padding: 25px;
     margin: auto;
     background-color: #DDDDDD;
+    border-radius: 16px;
 }
 
 .form-signin .form-signin-heading,

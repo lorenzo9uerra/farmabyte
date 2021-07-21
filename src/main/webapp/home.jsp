@@ -40,16 +40,24 @@
         </form>
     </div>
     <c:if test="${farmaciResult != null && empty farmaciResult}">
-        <p id="results" name="error">I farmaci selezionati
-            non sono disponibili</p>
+        <div id="results">
+            <p id="error">I farmaci selezionati
+                non sono disponibili in questo comune</p>
+        </div>
     </c:if>
     <c:if test="${not empty farmaciResult}">
         <div id="results">
             <table>
+                <tr>
+                    <th>Nome Faramcia</th>
+                    <th>Via</th>
+                    <th>Quantità</th>
+                    <th></th>
+                </tr>
                 <c:forEach var="entry" items="${farmaciResult}">
                     <tr>
                         <td>
-                            <c:out value="${entry.key.nome}" />
+                            <c:out value="${entry.key.nome}" />&emsp;
                         </td>
                         <td>
                             <c:out value="${entry.key.via}" />&emsp;
@@ -57,6 +65,7 @@
                         <td>
                             <c:out
                                 value="${entry.value.y.quantita > 10 ? 'disponibili' : 'in esaurimento'}" />
+                            &emsp;
                         </td>
                         <td><a
                                 href="/nuovaPrenotazione?farmacia=${entry.key.nome}&farmaco=${entry.value.x.nome}">prenota</a>
