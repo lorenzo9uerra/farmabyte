@@ -1,6 +1,6 @@
 package it.farmabyte.app.controller;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -19,16 +19,16 @@ public class GestionePrenotazioniController extends Controller implements IGesti
     }
 
     @Override
-    public Collection<Prenotazione> getListaPrenotazioni(ClienteRegistrato cliente) {
+    public ArrayList<Prenotazione> getListaPrenotazioni(ClienteRegistrato cliente) {
         return cliente.getPrenotazioni();
     }
 
 
 
     @Override
-    public Prenotazione creaPrenotazione(ClienteRegistrato cliente, Farmacia farmacia, Map<Farmaco, Integer> listaFarmaci) {
+    public Prenotazione creaPrenotazione(String id, ClienteRegistrato cliente, Farmacia farmacia, Map<Farmaco, Integer> listaFarmaci) {
         
-        Prenotazione result = new Prenotazione(new Date(), false, cliente, farmacia, listaFarmaci);
+        Prenotazione result = new Prenotazione(id, new Date(), false, cliente, farmacia, listaFarmaci);
 
         //salva la prenotazione nel DB.
         //se manteniamo tutto in locale possiamo utilizzare un singleton

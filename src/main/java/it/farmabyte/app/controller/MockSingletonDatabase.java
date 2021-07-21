@@ -2,7 +2,9 @@ package it.farmabyte.app.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -71,14 +73,14 @@ public class MockSingletonDatabase {
         "MI", "Milano", "Via Roma", 12);
         comuni.add("Milano");
 
-        farmaciaSD.addFarmaco(aspirina, new Lotto(245, new Date(2022, 9, 14)));
-        farmaciaSD.addFarmaco(collirio, new Lotto(300, new Date(2024, 11, 23)));
-        farmaciaSD.addFarmaco(oki, new Lotto(450, new Date(2022, 7, 9)));
-        farmaciaTV.addFarmaco(oki, new Lotto(2, new Date(2021, 12, 1)));
+        farmaciaSD.addFarmaco(aspirina, new Lotto(245, new Date(122, 9, 14)));
+        farmaciaSD.addFarmaco(collirio, new Lotto(300, new Date(124, 11, 23)));
+        farmaciaSD.addFarmaco(oki, new Lotto(450, new Date(122, 7, 9)));
+        farmaciaTV.addFarmaco(oki, new Lotto(2, new Date(121, 12, 1)));
 
-        farmaciaMZ.addFarmaco(oki, new Lotto(129, new Date(2022, 2, 12)));
-        farmaciaMZ.addFarmaco(tachipirina, new Lotto(97, new Date(2024, 4, 5)));
-        farmaciaMZ.addFarmaco(gaviscon, new Lotto(156, new Date(2023, 12, 9)));
+        farmaciaMZ.addFarmaco(oki, new Lotto(129, new Date(122, 2, 12)));
+        farmaciaMZ.addFarmaco(tachipirina, new Lotto(97, new Date(124, 4, 5)));
+        farmaciaMZ.addFarmaco(gaviscon, new Lotto(156, new Date(123, 12, 9)));
 
         farmacie.add(farmaciaSD);
         farmacie.add(farmaciaTV);
@@ -91,9 +93,23 @@ public class MockSingletonDatabase {
         farmacisti.add(new Farmacista("Alberto", "Rossi", "RSSLRT63B04G337G", "alberto.rossi@farmacia.com", farmaciaMZ, bCryptPasswordEncoder.encode("password")));
         
         ClienteRegistrato benson = new ClienteRegistrato("Riccardo", "Benzoni", "BNZRCR66B07H501D", 
-                            "riccardo.benzoni@studio.unibo.it", new Date(1966, 2, 7), 0, true, false);
+                            "riccardo.benzoni@studio.unibo.it", new Date(66, 2, 7), 0, true, false);
         benson.setPassword(bCryptPasswordEncoder.encode("password1"));
         benson.setPasswordConfirm("password1");
+
+        // mock prenotazioni per benson
+        Map<Farmaco, Integer> farmaci = new HashMap<>();
+        farmaci.put(new Farmaco("JHBASFS", "ASPIRINA 20mg"), 2);
+        Prenotazione prenotazione = new Prenotazione("BOQJFNKASIU", new Date(121, 7, 30), false, benson, farmaciaDA, farmaci);
+        prenotazioni.add(prenotazione);
+        benson.addPrenotazione(prenotazione);
+
+        farmaci = new HashMap<>();
+        farmaci.put(new Farmaco("OMNTOSD42", "OKI 20mg"), 10);
+        prenotazione = new Prenotazione("NOASJ9834H29N", new Date(121, 7, 12), true, benson, farmaciaMI, farmaci);
+        prenotazioni.add(prenotazione);
+        benson.addPrenotazione(prenotazione);
+
         Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("cliente"));
         benson.setAuthorities(grantedAuthorities);

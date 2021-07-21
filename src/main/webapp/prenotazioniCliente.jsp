@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
     <meta charset="UTF-8">
     <title>Prenotazioni</title>
@@ -16,10 +17,18 @@
     </div>
     <table>
         <tbody>
-            <c:forEach items="${prenotazioniOggi}" var="prenotazione">
+            <tr>
+                <th>ID</th>
+                <th>Nome Farmacia</th>
+                <th>Data Prenotazione</th>
+                <th>Stato Prenotazione</th>
+            </tr>
+            <c:forEach items="${prenotazioni}" var="prenotazione">
                 <tr>
                     <td>${prenotazione.id} </td>
-                    <td>${prenotazione.farmacia}</td>
+                    <td>${prenotazione.farmacia.nome}</td>
+                    <td><fmt:formatDate value="${prenotazione.data}" pattern="dd/MM/yyyy" /></td>
+                    <td>${prenotazione.confermata ? 'Confermata' : 'Non Confermata'}</td>
                 </tr>
             </c:forEach>
         </tbody>
