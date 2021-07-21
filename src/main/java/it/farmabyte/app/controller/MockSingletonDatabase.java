@@ -71,14 +71,14 @@ public class MockSingletonDatabase {
         "MI", "Milano", "Via Roma", 12);
         comuni.add("Milano");
 
-        farmaciaSD.addFarmaco(aspirina, new Lotto(245, new Date(2022, 9, 14)));
-        farmaciaSD.addFarmaco(collirio, new Lotto(300, new Date(2024, 11, 23)));
-        farmaciaSD.addFarmaco(oki, new Lotto(450, new Date(2022, 7, 9)));
-        farmaciaTV.addFarmaco(oki, new Lotto(2, new Date(2021, 12, 1)));
+        farmaciaSD.addFarmaco(aspirina, new Lotto(245, new Date(122, 9, 14)));
+        farmaciaSD.addFarmaco(collirio, new Lotto(300, new Date(124, 11, 23)));
+        farmaciaSD.addFarmaco(oki, new Lotto(450, new Date(122, 7, 9)));
+        farmaciaTV.addFarmaco(oki, new Lotto(2, new Date(121, 11, 1)));
 
-        farmaciaMZ.addFarmaco(oki, new Lotto(129, new Date(2022, 2, 12)));
-        farmaciaMZ.addFarmaco(tachipirina, new Lotto(97, new Date(2024, 4, 5)));
-        farmaciaMZ.addFarmaco(gaviscon, new Lotto(156, new Date(2023, 12, 9)));
+        farmaciaMZ.addFarmaco(oki, new Lotto(129, new Date(122, 2, 12)));
+        farmaciaMZ.addFarmaco(tachipirina, new Lotto(97, new Date(124, 4, 5)));
+        farmaciaMZ.addFarmaco(gaviscon, new Lotto(156, new Date(123, 11, 9)));
 
         farmacie.add(farmaciaSD);
         farmacie.add(farmaciaTV);

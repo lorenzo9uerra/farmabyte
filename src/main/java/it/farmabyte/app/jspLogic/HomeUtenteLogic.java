@@ -25,7 +25,7 @@ public class HomeUtenteLogic {
 
     @GetMapping({ "/", "/home" })
     public String home(Model model, Principal utente) { // Authentication invece di Principal se si vogliono più
-        // informazioni
+                                                        // informazioni
         model.addAttribute("show", false);
         if(utente==null)
             return "home";

@@ -14,27 +14,29 @@
 
     <div class="ricercaUtente">
 
-     <form:form action="/farmacia/verificaIdentita" method="post" modelAttribute="ricercaUtente">
-        <form:label class="textVerificaIdentita" path="text">Cerca Utente: </form:label>
-        <form:input class="button inputEmail" type="text" path="email"/>
+     <form action="/farmacia/verificaIdentita" method="get">
+        <label class="textVerificaIdentita">Cerca Utente: </label>
+        <input class="button inputEmail" type="text" name="email"/>
         <button class="button bottoneRicercaUtente" type="submit">Cerca</button>
-     </form:form>
+     </form>
     </div>
-    <div class="risultato">
-     <c:if test="${risultato == 'true'}">
 
-        <form:form action="/farmacia/verificaIdentita" method="put" modelAttribute="utenteCercato">
-            <form:label class="textVerificaIdentita" style="font-weight:normal" path="nome">${utenteCercato.cognome}</form:label>
-            <form:label class="textVerificaIdentita" style="font-weight:normal" path="cognome">${utenteCercato.nome}</form:label>
-            <form:label class="textVerificaIdentita" style="font-weight:normal" path="codiceFiscale">${utenteCercato.codiceFiscale}</form:label>
-                <form:button class="button bottoneRicercaUtente" type="submit" >Verifica</form:button>
-        </form:form>
-     </c:if>
-     <c:if test="${risultato == 'noResearchMatch'}">
+    <div class="risultato">
+    <c:if test="${risultato == 'true'}">
+
+        <form action="/farmacia/verificaIdentita" method="post">
+            <input type="hidden" name="email"value="${utenteCercato.email}"/>
+            ${utenteCercato.cognome}&emsp;
+            ${utenteCercato.nome}&emsp;
+            ${utenteCercato.codiceFiscale}&emsp;
+            <button class="button bottoneRicercaUtente" type="submit" >Verifica</button>
+        </form>
+    </c:if>
+    <c:if test="${risultato == 'noResearchMatch'}">
           <h3 class="textVerificaIdentita">La ricerca non ha prodotto nessun risultato</h3>
-     </c:if>
+    </c:if>
      <c:if test="${risultato == 'GoodEnd'}">
-        <h3 class="textVerificaIdentita">"L'utente è stato verificato"</h3>
+        <h3 class="textVerificaIdentita">L&#39;utente è stato verificato</h3>
      </c:if>
      <c:if test="${risultato == 'BadEnd'}">
           <h3 class="textVerificaIdentita">Si è presentato un errore</h3>
