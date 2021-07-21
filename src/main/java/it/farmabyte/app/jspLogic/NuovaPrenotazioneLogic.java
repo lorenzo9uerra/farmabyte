@@ -1,5 +1,6 @@
 
 package it.farmabyte.app.jspLogic;
+
 import it.farmabyte.app.DTO.RicercaFarmaciDTO;
 import it.farmabyte.app.DTO.RicercaUtenteDTO;
 import it.farmabyte.app.controller.IGestionePrenotazioni;
@@ -80,10 +81,15 @@ public class NuovaPrenotazioneLogic {
 
     @PostMapping(path = "", consumes = "application/x-www-form-urlencoded")
     public String nuovaPrenotazione(Model model, Principal utente, HttpServletRequest request){
+        initNuovaPrenotazione(model, utente);
+
         if(request != null){
             ClienteRegistrato cliente = utenteService.findByUsername(utente.getName());
             Farmacia farmacia = MockSingletonDatabase.getDatabaseInstance().findFarmaciaByNome(request.getParameter("farmacia"));
             Date data;
+
+            System.out.println("Parameter farmacia: " + request.getParameter("farmacia"));
+            System.out.println("(Parameter)Principal cliente: " + utente.getName());
 
             try {
                 data = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataPrenotazione"));
@@ -93,6 +99,17 @@ public class NuovaPrenotazioneLogic {
             }
             
             if(cliente == null || farmacia == null || data == null){
+                model.addAttribute("error", true);
+                System.out.println("Null objects");
+                if(cliente == null)
+                    System.out.println("Cliente bnn");
+                else if(farmacia == null){
+                    System.out.println("Farmacia dsds");
+                }
+                return "nuovaPrenotazione";
+            }
+
+            if(cliente.isBloccato() || !cliente.isVerificato()){
                 model.addAttribute("error", true);
                 return "nuovaPrenotazione";
             }
@@ -115,6 +132,7 @@ public class NuovaPrenotazioneLogic {
                 else if(parameterName.startsWith("num")){
                     if(lastFarmaco == null){
                         model.addAttribute("error", true);
+                        System.out.println(parameterName);
                         return "nuovaPrenotazione";
                     }
                     
@@ -134,9 +152,10 @@ public class NuovaPrenotazioneLogic {
             + "\n" + prenotazione.getId() + "(firstFarmaco) : " + prenotazione.getFarmaci().keySet().toArray(new Farmaco[1])[0].getNome());
             model.addAttribute("success", true);
         }
-        else
+        else{
+            System.out.println("Request null");
             model.addAttribute("error", true);
-
+        }
         return "nuovaPrenotazione";
     }
     

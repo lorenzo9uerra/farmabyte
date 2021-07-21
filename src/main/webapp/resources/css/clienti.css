@@ -164,6 +164,7 @@ a:hover.title {
 #nuovaPrenotazione-builder{
     width: 100%;
     background-color: #DDDDDD;
+    border-radius: 20px;
 }
 
 table{

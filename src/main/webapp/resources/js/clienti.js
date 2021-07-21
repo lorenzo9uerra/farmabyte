@@ -68,10 +68,12 @@ function prenotazione_init(getInitialized){
     else
         numFarmaci = 0;
 
-    if(document.getElementById("farmacia").value != '')
-        document.getElementById("farmacia").disabled = true;
+    if(document.getElementById("farmacia").value != ''){
+        document.getElementById("farmacia").readOnly = true;
+        document.getElementById("text_nomeFarmaco_1").readOnly = true;
+    }
     else
-        document.getElementById("farmacia").disabled = false;
+        document.getElementById("farmacia").readOnly = false;
 
     nextId = 2;
 }

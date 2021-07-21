@@ -45,10 +45,10 @@ public class MockSingletonDatabase {
         comuni = new ArrayList<>();
 
         Farmaco aspirina = new Farmaco("AICKL1134LP", "ASPIRINA 20 mg");
-        Farmaco collirio = new Farmaco("BNJKA9589OE", "COLLIRIO AB&C");
+        Farmaco collirio = new Farmaco("BNJKA9589OE", "COLLIRIO ABC");
         Farmaco oki = new Farmaco("NKNJS8457BB", "OKI 15 mg");
         Farmaco tachipirina = new Farmaco("AJSNV1247KG", "TACHIPIRINA 20 mg");
-        Farmaco gaviscon = new Farmaco("AJSNV1247KG", "GAVISCON 200 ml");
+        Farmaco gaviscon = new Farmaco("GDNBH2853FA", "GAVISCON 200 ml");
 
         farmaci.add(aspirina);
         farmaci.add(collirio);
@@ -143,7 +143,7 @@ public class MockSingletonDatabase {
 
     public Farmacia findFarmaciaByNome(String nomeFarmacia){
         for(Farmacia farmacia : farmacie){
-            if(farmacia.getNome().equals(nomeFarmacia)){
+            if(farmacia.getNome().toLowerCase().equals(nomeFarmacia.toLowerCase())){
                 return farmacia;
             }
         }
