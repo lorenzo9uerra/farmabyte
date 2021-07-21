@@ -11,6 +11,9 @@
     <section class="header">
         <h1>Prenotazioni</h1>
     </section>
+    <div class="logout-button">
+        <a href="logout"><button class="button">Logout</button></a>
+    </div>
     <table>
         <tbody>
             <c:forEach items="${prenotazioniOggi}" var="prenotazione">

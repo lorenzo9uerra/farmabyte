@@ -10,6 +10,9 @@
     <section class="header">
         <h1>Nuova Prenotazione</h1>
     </section>
+    <div class="logout-button">
+        <a href="logout"><button class="button">Logout</button></a>
+    </div>
     <div id="nuovaPrenotazione">
         <form action="nuovaPrenotazione" method="post">
             <label>Farmacia:</label><input type="text" id="farmacia" name="farmacia" class="form-control" placeholder="Nome Farmacia" value="${getInitialized? farmacia : ''}">

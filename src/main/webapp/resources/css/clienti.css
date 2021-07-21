@@ -181,3 +181,8 @@ table .spacer{
     background-color: #ff43439b;
     border-radius: 10px
 }
+
+input[type="date"] {
+    padding: 0;
+    padding-left: 10px;
+}

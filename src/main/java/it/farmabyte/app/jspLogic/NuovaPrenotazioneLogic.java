@@ -5,8 +5,6 @@ import it.farmabyte.app.DTO.RicercaUtenteDTO;
 import it.farmabyte.app.controller.IGestionePrenotazioni;
 import it.farmabyte.app.controller.MockSingletonDatabase;
 import it.farmabyte.app.model.ClienteRegistrato;
-import it.farmabyte.app.model.Farmaco;
-import it.farmabyte.app.model.Prenotazione;
 import it.farmabyte.app.services.IUtenteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @SpringBootApplication
 @Controller

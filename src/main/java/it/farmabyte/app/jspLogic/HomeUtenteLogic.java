@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class HomeUtenteLogic {
     @Autowired
     private IUtenteService utenteService;
 
-    @RequestMapping({ "/", "/home" })
+    @GetMapping({ "/", "/home" })
     public String home(Model model, Principal utente) { // Authentication invece di Principal se si vogliono più
         // informazioni
         model.addAttribute("show", false);
@@ -43,13 +44,6 @@ public class HomeUtenteLogic {
             model.addAttribute("show", true);
             return "homeFarmacia";
         }
-        return "home";
-    }
-
-    @PostMapping("")
-    public String setName(@ModelAttribute ClienteRegistrato utente, Model model) {
-        model.addAttribute("utente", utente);
-        System.out.println("ciao " + utente.getNome());
         return "home";
     }
 }

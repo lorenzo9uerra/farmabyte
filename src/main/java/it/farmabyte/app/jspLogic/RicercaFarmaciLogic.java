@@ -1,5 +1,6 @@
 package it.farmabyte.app.jspLogic;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.farmabyte.app.controller.IRicercaFarmaci;
 import it.farmabyte.app.controller.MockSingletonDatabase;
+import it.farmabyte.app.model.ClienteRegistrato;
 import it.farmabyte.app.model.Farmacia;
 import it.farmabyte.app.model.Farmaco;
 import it.farmabyte.app.model.Lotto;
 import it.farmabyte.app.model.Pair;
+import it.farmabyte.app.services.IUtenteService;
 
 @SpringBootApplication
 @Controller
@@ -27,12 +30,25 @@ public class RicercaFarmaciLogic {
 
     @Autowired
     IRicercaFarmaci ricercaFarmaci;
+
+    @Autowired
+    IUtenteService utenteService;
+
     MockSingletonDatabase mockSingletonDatabase = MockSingletonDatabase.getDatabaseInstance();
 
     @PostMapping({ "/home", "/" })
-    public String ricercaFarmaco(Model model, String farmaco, String comune) {
+    public String ricercaFarmaco(Model model, String farmaco, String comune, Principal utente) {
         Map<Farmacia, Pair<Farmaco, Lotto>> farmaciResult = ricercaFarmaci.ricercaFarmaci(comune, farmaco);
         model.addAttribute("farmaciResult", farmaciResult);
+        if(utente == null)
+            return "home";
+        ClienteRegistrato cliente = new ClienteRegistrato();
+        cliente = utenteService.findByUsername(utente.getName());
+        if (cliente != null) {
+            model.addAttribute("nomeUtente", " " + cliente.getNome());
+            System.out.println(utente.getName());
+            model.addAttribute("show", true);
+        }
         return "home";
     }
 
