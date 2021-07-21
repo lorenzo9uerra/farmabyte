@@ -132,6 +132,25 @@ public class MockSingletonDatabase {
         return null;
     }
 
+    public Farmacia findFarmaciaByNome(String nomeFarmacia){
+        for(Farmacia farmacia : farmacie){
+            if(farmacia.getNome().equals(nomeFarmacia)){
+                return farmacia;
+            }
+        }
+
+        return null;
+    }
+
+    public Farmaco findFarmacoByNome(String nomeFarmaco){
+        for(Farmaco farmaco : farmaci){
+            if(farmaco.getNome().equals(nomeFarmaco))
+                return farmaco;
+        }
+
+        return null;
+    }
+
     public boolean insertPrenotazione(Prenotazione toInsert){
         return prenotazioni.add(toInsert);
     }

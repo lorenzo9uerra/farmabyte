@@ -1,7 +1,6 @@
 
 package it.farmabyte.app.jspLogic;
 import it.farmabyte.app.DTO.RicercaUtenteDTO;
-import it.farmabyte.app.DTO.VerificaIdentitaDTO;
 import it.farmabyte.app.controller.UtentiController;
 import it.farmabyte.app.model.ClienteRegistrato;
 import org.springframework.beans.factory.annotation.Autowired;

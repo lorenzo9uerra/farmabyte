@@ -66,7 +66,15 @@ public class RicercaFarmaciLogic {
         }
         else{
             //autocompletamento di farmaci relativi a una farmacia specifica (caso di NuovaPrenotazione)
-            
+            Farmacia foundFarmacia = mockSingletonDatabase.findFarmaciaByNome(farmacia);
+            if(foundFarmacia != null){
+                for(Farmaco ff : foundFarmacia.getMagazzino().keySet()){
+                    if(foundFarmacia.getMagazzino().get(ff).getQuantita() > 0 
+                    && ff.getNome().toLowerCase().startsWith(farmaco.toLowerCase())){
+                        resp.add(ff.getNome());
+                    }
+                }
+            }
         }
 
         return resp;
@@ -86,7 +94,11 @@ public class RicercaFarmaciLogic {
     public @ResponseBody ArrayList<String> hinterFarmacia(@RequestParam("farmacia") String farmacia) {
         ArrayList<String> resp = new ArrayList<String>();
 
-        //processing...
+        for(Farmacia farmacia_iter : mockSingletonDatabase.getFarmacie()){
+            if(farmacia_iter.getNome().toLowerCase().startsWith(farmacia.toLowerCase())){
+                resp.add(farmacia_iter.getNome());
+            }
+        }
 
         return resp;
     }

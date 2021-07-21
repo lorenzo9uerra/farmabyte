@@ -8,10 +8,10 @@ window.addEventListener("load", function () {
 
     // Add a keyup event listener to our input element
     var inputFarmacia = document.getElementById('farmacia');
-    inputFarmacia.addEventListener("keyup", function (event) { hinter(event, "list_farmacia", "/hintFarmaco?farmaco=") });
+    inputFarmacia.addEventListener("keyup", function (event) { hinter(event, "list_farmacia", "/hintFarmacia?farmacia=") });
 
     var inputFarmaco = document.getElementById('nomeFarmaco_1');
-    inputFarmaco.addEventListener("keyup", function (event) { hinter(event, "list_comuni", "/hintComune?comune=") });
+    inputFarmaco.addEventListener("keyup", function (event) { hinter(event, "list_nomeFarmaco_1", "/hintFarmaco?farmaco=") });
 
     // create one global XHR object 
     // so we can abort old requests when a new one is make
@@ -55,8 +55,9 @@ function hinter(event, element, url) {
                 });
             }
         };
-
-        window.hinterXHR.open("GET", url + input.value, true);
+        //Aggiunta url per inviare anche la farmacia nella richiesta get nel caso di hintFarmaco
+        var urlAddition = (input.id == 'farmacia')? '' : '&farmacia=' + document.getElementById('farmacia').value;
+        window.hinterXHR.open("GET", url + input.value + urlAddition, true);
         window.hinterXHR.send()
     }
 }
@@ -76,14 +77,14 @@ function prenotazione_init(getInitialized){
 }
 
 function increaseFarmaco(id){
-    var quantityObj = document.getElementById("quantitaFarmaco_" + id);
-    quantityObj.innerText = parseInt(quantityObj.innerText) + 1;
+    var quantityObj = document.getElementById("num_quantitaFarmaco_" + id);
+    quantityObj.value = parseInt(quantityObj.value) + 1;
 }
 
 function decreaseFarmaco(id){
-    var quantityObj = document.getElementById("quantitaFarmaco_" + id);
-    if(parseInt(quantityObj.innerText) > 1)
-        quantityObj.innerText = parseInt(quantityObj.innerText) - 1;
+    var quantityObj = document.getElementById("num_quantitaFarmaco_" + id);
+    if(parseInt(quantityObj.value) > 1)
+        quantityObj.value = parseInt(quantityObj.value) - 1;
     else
         eliminaFarmaco(id);
 }
@@ -109,12 +110,12 @@ function addFarmaco(){
     
     nomeFarmaco.setAttribute("class", "nomeFarmaco");
     nomeFarmaco.setAttribute("id", "nomeFarmaco_" + nextId);
-    nomeFarmaco.innerHTML = '<input type="text" id="text_nomeFarmaco_' + nextId + '1" list="list_nomeFarmaco_' + nextId + '" placeholder="Nome farmaco">';
+    nomeFarmaco.innerHTML = '<input type="text" id="text_nomeFarmaco_' + nextId + '1" name="text_nomeFarmaco_' + nextId + '1" list="list_nomeFarmaco_' + nextId + '" placeholder="Nome farmaco">';
     datalist.setAttribute("id", "list_nomeFarmaco_" + nextId);
     spacer.setAttribute("class", "spacer");
     quantitaFarmaco.setAttribute("class", "quantitaFarmaco");
     quantitaFarmaco.setAttribute("id", "quantitaFarmaco_" + nextId);
-    quantitaFarmaco.innerText = 1;
+    quantitaFarmaco.innerHTML = '<input type="text" id="num_quantitaFarmaco_' + nextId + '" name="num_quantitaFarmaco_' + nextId + '" value="1" readonly>';
     increaseFarmacoButton.setAttribute("class", "increaseFarmacoButton");
     increaseFarmacoButton.innerHTML = '<button type="button" onclick="increaseFarmaco(' + nextId + ')">+</button>';
     decreaseFarmacoButton.setAttribute("class", "decreaseFarmacoButton");
@@ -133,8 +134,46 @@ function addFarmaco(){
     table.appendChild(toAdd);
 
     // listener per l'autocompletamento
+
+    var listName = "list_nomeFarmaco_" + nextId;
     
-    document.getElementById("nomeFarmaco_" + nextId).;
+    document.getElementById("nomeFarmaco_" + nextId).addEventListener("keyup", 
+    function (event) { hinter(event, listName, "/hintFarmaco?farmaco=") });
 
     nextId++;
+}
+
+function validate(){
+    var returnValue = true;
+    if(document.getElementById("farmacia").value == "")
+        returnValue = false;
+    else if(document.getElementById("dataPrenotazione").value == "")
+        returnValue = false;
+    else{
+        
+        for(currentValueTr of document.getElementById("farmaci-tbody").children){
+            var nomeFarmacoTd = currentValueTr.firstElementChild;
+            if(nomeFarmacoTd.children.length > 0){
+                if(nomeFarmacoTd.firstElementChild.value == ''){
+                    returnValue = false;
+                }
+            }
+        }
+    }
+
+    if(returnValue)
+        document.getElementById("error").setAttribute("hidden");
+    else
+        document.getElementById("error").removeAttribute("hidden");
+
+    var error = document.getElementById("post-error");
+    var success = document.getElementById("post-success");
+    if(error != null){
+        error.setAttribute("hidden");
+    }
+    if(success != null){
+        success.setAttribute("hidden");
+    }
+
+    return returnValue;
 }

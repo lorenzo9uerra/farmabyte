@@ -14,10 +14,10 @@
         <a href="logout"><button class="button">Logout</button></a>
     </div>
     <div id="nuovaPrenotazione">
-        <form action="nuovaPrenotazione" method="post">
+        <form action="nuovaPrenotazione" method="post" modelAttribute="prenotazioneForm" onsubmit="return validate()">
             <label>Farmacia:</label><input type="text" id="farmacia" name="farmacia" list="list_farmacia" class="form-control" placeholder="Nome Farmacia" value="${getInitialized? farmacia : ''}">
             <datalist id="list_farmacia"></datalist>
-            <label>Data:</label><input type="date" min="${dataMinimaPrenotazione}" class="form-control" placeholder="Data Prenotazione"
+            <label>Data:</label><input type="date" id="dataPrenotazione" name="dataPrenotazione" min="${dataMinimaPrenotazione}" class="form-control" placeholder="Data Prenotazione"
             autofocus="true"></input>
             <label>Farmaci:</label>
             <div id="nuovaPrenotazione-builder">
@@ -29,10 +29,10 @@
                             <th class="quantitaFarmaco">Quantit&agrave;</th>
                         </tr>
                         <tr id="1">
-                            <td class="nomeFarmaco" id="nomeFarmaco_1"><input type="text" id="text_nomeFarmaco_1" list="list_nomeFarmaco_1" value="${getInitialized? firstFarmaco : ''}" placeholder="Nome farmaco"></td>
+                            <td class="nomeFarmaco" id="nomeFarmaco_1"><input type="text" id="text_nomeFarmaco_1" name="text_nomeFarmaco_1" list="list_nomeFarmaco_1" value="${getInitialized? firstFarmaco : ''}" placeholder="Nome farmaco"></td>
                             <datalist id="list_nomeFarmaco_1"></datalist>
                             <td class="spacer" />
-                            <td class="quantitaFarmaco" id="quantitaFarmaco_1">1</td>
+                            <td class="quantitaFarmaco" id="quantitaFarmaco_1"><input type="text" id="num_quantitaFarmaco_1" name="num_quantitaFarmaco_1" value="1" readonly></td>
                             <td class="increaseFarmacoButton"><button type="button" onClick="increaseFarmaco(1)">+</button></td>
                             <td class="decreaseFarmacoButton"><button type="button" onClick="decreaseFarmaco(1)">-</button></td>
                             <td class="eliminaFarmacoButton"><button type="button" onClick="eliminaFarmaco(1)">Elimina</button></td>
@@ -42,8 +42,12 @@
                 <button type="button" onClick="addFarmaco()" style="margin: 1em">Aggiungi farmaco</button>
             </div>
 
-            <input type="submit" id="inviaPrenotazione" value="Conferma">
+            <input type="submit" onClick="return validate()" id="inviaPrenotazione" value="Conferma">
         </form>
+
+        <p id="error" hidden>Errore: campi non validi</p>
+        <c:if test="${error}"><p id="post-error">Errore: la prenotazione non è valida</p></c:if>
+        <c:if test="${success}"><p id="post-success">Prenotazione conclusa con successo!</p></c:if>
     </div>
     
     <script src="${contextPath}/resources/js/clienti.js"></script>
