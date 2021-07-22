@@ -98,8 +98,8 @@ public class MockSingletonDatabase {
         benson.setPassword(bCryptPasswordEncoder.encode("password"));
         benson.setPasswordConfirm("password");
 
-        ClienteRegistrato paul = new ClienteRegistrato("Paul", "Niceview", "PALNCV70B25I241A",
-                "paul.niceview@unibo.it", new Date(70, 2, 5), 0, true, false);
+        ClienteRegistrato paul = new ClienteRegistrato("Paul", "Niceview", "PALNCV70B25I241A", "paul.niceview@unibo.it",
+                new Date(70, 2, 5), 0, true, false);
         benson.setPassword(bCryptPasswordEncoder.encode("password"));
         benson.setPasswordConfirm("password");
 
@@ -109,6 +109,20 @@ public class MockSingletonDatabase {
         clienti.add(benson);
         clienti.add(matteo);
         clienti.add(paul);
+
+        Map<Farmaco, Integer> farmaciPrenotazione = new HashMap<Farmaco, Integer>();
+        farmaciPrenotazione.put(oki, 3);
+        farmaciPrenotazione.put(tachipirina, 2);
+        farmaciPrenotazione.put(gaviscon, 1);
+        Prenotazione prenotazione = new Prenotazione("2398KJHIB1", new Date(124, 5, 12), false, benson, farmaciaMZ,
+                farmaciPrenotazione);
+        prenotazioni.add(prenotazione);
+        farmaciPrenotazione = new HashMap<Farmaco, Integer>();
+        farmaciPrenotazione.put(tachipirina, 6);
+        prenotazione = new Prenotazione("840BKJ29KH", new Date(121, 6, 22), false, benson, farmaciaMZ, 
+                farmaciPrenotazione);
+        prenotazioni.add(prenotazione);
+        farmaciaMZ.addPrenotazione(prenotazione);
     }
 
     public ClienteRegistrato findByUsername(String username) {
@@ -127,9 +141,9 @@ public class MockSingletonDatabase {
         return null;
     }
 
-    public Farmacia findFarmaciaByNome(String nomeFarmacia){
-        for(Farmacia farmacia : farmacie){
-            if(farmacia.getNome().toLowerCase().equals(nomeFarmacia.toLowerCase())){
+    public Farmacia findFarmaciaByNome(String nomeFarmacia) {
+        for (Farmacia farmacia : farmacie) {
+            if (farmacia.getNome().toLowerCase().equals(nomeFarmacia.toLowerCase())) {
                 return farmacia;
             }
         }
@@ -137,9 +151,9 @@ public class MockSingletonDatabase {
         return null;
     }
 
-    public Farmaco findFarmacoByNome(String nomeFarmaco){
-        for(Farmaco farmaco : farmaci){
-            if(farmaco.getNome().equals(nomeFarmaco))
+    public Farmaco findFarmacoByNome(String nomeFarmaco) {
+        for (Farmaco farmaco : farmaci) {
+            if (farmaco.getNome().equals(nomeFarmaco))
                 return farmaco;
         }
 

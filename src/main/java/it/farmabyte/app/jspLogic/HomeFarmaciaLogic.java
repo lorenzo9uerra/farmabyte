@@ -20,11 +20,9 @@ public class HomeFarmaciaLogic {
 
     @GetMapping(value = "/farmacia")
     public String farmacia(Model model, Principal utente) {
-        System.out.println(utente.getName());
         Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
         if (farmacista != null) {
             model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
-            System.out.println(farmacista.getNome());
         }
         return "homeFarmacia";
     }

@@ -1,10 +1,9 @@
-
 package it.farmabyte.app.jspLogic;
+
 import it.farmabyte.app.DTO.RicercaFarmaciDTO;
 import it.farmabyte.app.controller.IPrenotazioni;
-import it.farmabyte.app.controller.IUtenti;
+import it.farmabyte.app.controller.MockSingletonDatabase;
 import it.farmabyte.app.model.ClienteRegistrato;
-import it.farmabyte.app.model.Farmacista;
 import it.farmabyte.app.model.Prenotazione;
 import it.farmabyte.app.services.IUtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -21,59 +22,41 @@ import java.util.Date;
 @SpringBootApplication
 @Controller
 @RequestMapping(value = "/farmacia/prenotazioni")
-@SessionAttributes({"prenotazioniOggi","listaPrenotazioni"})
 public class PrenotazioniFarmaciaLogic {
 
     @Autowired
     private IPrenotazioni prenotazioniController;
 
+    MockSingletonDatabase dbInstance = MockSingletonDatabase.getDatabaseInstance();
+
     @Autowired
     private IUtenteService utentiService;
 
     @GetMapping("")
-    public String prenotazioniFarmacia(Model model, Principal farmacista) {
+    public String prenotazioniFarmacia(Model model, Principal farmacista,@RequestParam(value="conferma", required= false) String conferma) {
+        if (conferma != null) {
+            if (!conferma.isEmpty()) {
+                if (!prenotazioniController.confermaPrenotazione(conferma)) {
+                    model.addAttribute("error", "Errore durante la conferma della prenotazione");
+                } else {
+                    model.addAttribute("success", "Prenotazione confermata");
+                }
+            }
+        }
 
-        Date oggi= Calendar.getInstance().getTime();
-
-        Collection<Prenotazione> prenotazioniOggi= prenotazioniController.getElencoPrenotazioni( utentiService.findFarmacistaByUsername(farmacista.getName()).getFarmacia(), oggi,oggi);
-
-        ClienteRegistrato cr=new ClienteRegistrato();
-        cr.setNome("pippo");
-        cr.setCognome("Augusto");
-        ClienteRegistrato cr1=new ClienteRegistrato();
-        cr1.setNome("angela");
-        cr1.setCognome("gennara");
-
-        Prenotazione p1= new Prenotazione();
-        p1.setId( "Prenotazione1" );
-        p1.setConfermata(false);
-        p1.setRichiedente(cr);
-
-        Prenotazione p2= new Prenotazione();
-        p1.setId( "Prenotazione2" );
-        p2.setConfermata(true);
-        p2.setRichiedente(cr1);
-        p2.setData(oggi);
-
-        prenotazioniOggi.add(p1);
-        prenotazioniOggi.add(p2);
-
-        model.addAttribute("prenotazioniOggi", prenotazioniOggi);
-        model.addAttribute("filtro",new RicercaFarmaciDTO());
-        model.addAttribute("pr",new Prenotazione());
+        Collection<Prenotazione> prenotazioni= dbInstance.getPrenotazioni();
+        model.addAttribute("message", "Prenotazioni di oggi");
+        model.addAttribute("prenotazioni", prenotazioni);
         return "prenotazioniFarmacia";
     }
 
     @PostMapping("")
-    public String confermaPrenotazione(@ModelAttribute("pr") Prenotazione prenotazione, Model model){
+    public String confermaPrenotazione(String inizio, String fine, Prenotazione prenotazione, Model model, Principal farmacista) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        //prenotazioniController.confermaPrenotazione(prenotazione.getId());
-
-        Date oggi= Calendar.getInstance().getTime();
-        model.addAttribute("filtro",new RicercaFarmaciDTO());
-        model.addAttribute("pr",new Prenotazione());
-        //Collection<Prenotazione> prenotazioniOggi= prenotazioniController.getPrenotazioni( farmacista.getFarmacia(), oggi,oggi);
-        //model.addAttribute("prenotazioniOggi", prenotazioniOggi);
+        Collection<Prenotazione> prenotazioni= prenotazioniController.getElencoPrenotazioni(utentiService.findFarmacistaByUsername(farmacista.getName()).getFarmacia(), sdf.parse(inizio), sdf.parse(fine));
+        model.addAttribute("prenotazioni", prenotazioni);
+        model.addAttribute("message", "Prenotazioni tra "+inizio+" e "+fine);
         return "prenotazioniFarmacia";
     }
 }
