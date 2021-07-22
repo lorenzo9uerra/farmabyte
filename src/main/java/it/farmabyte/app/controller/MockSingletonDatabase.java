@@ -89,7 +89,7 @@ public class MockSingletonDatabase {
                 bCryptPasswordEncoder.encode("password")));
 
         ClienteRegistrato benson = new ClienteRegistrato("Riccardo", "Benzoni", "BNZRCR66B07H501D",
-                "riccardo.benzoni@studio.unibo.it", new Date(66, 2, 7), 0, true, false);
+                "riccardo.benzoni@studio.unibo.it", new Date(66, 2, 7), 0, false, false);
         benson.setPassword(bCryptPasswordEncoder.encode("password"));
         benson.setPasswordConfirm("password");
 
@@ -102,20 +102,6 @@ public class MockSingletonDatabase {
                 "paul.niceview@unibo.it", new Date(70, 2, 5), 0, true, false);
         benson.setPassword(bCryptPasswordEncoder.encode("password"));
         benson.setPasswordConfirm("password");
-
-        // mock prenotazioni per benson
-        Map<Farmaco, Integer> farmaci = new HashMap<>();
-        farmaci.put(new Farmaco("JHBASFS", "ASPIRINA 20mg"), 2);
-        Prenotazione prenotazione = new Prenotazione("BOQJFNKASIU", new Date(121, 7, 30), false, benson, farmaciaDA,
-                farmaci);
-        prenotazioni.add(prenotazione);
-        benson.addPrenotazione(prenotazione);
-
-        farmaci = new HashMap<>();
-        farmaci.put(new Farmaco("OMNTOSD42", "OKI 20mg"), 10);
-        prenotazione = new Prenotazione("NOASJ9834H29N", new Date(121, 7, 12), true, benson, farmaciaMI, farmaci);
-        prenotazioni.add(prenotazione);
-        benson.addPrenotazione(prenotazione);
 
         Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("cliente"));

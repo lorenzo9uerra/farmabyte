@@ -28,9 +28,14 @@ public class UtentiFarmaciaLogic {
                 model.addAttribute("utenti", utenti);
                 return "utentiFarmacia";
             }
-            Collection<ClienteRegistrato> cliente = new ArrayList<ClienteRegistrato>();
-            cliente.add(utentiController.ricercaUtente(email));
-            model.addAttribute("utenti", cliente);
+            Collection<ClienteRegistrato> utenti = new ArrayList<ClienteRegistrato>();
+            ClienteRegistrato cliente = utentiController.ricercaUtente(email);
+            if(cliente == null){
+                model.addAttribute("utenti", new ArrayList<>());
+                return "utentiFarmacia";
+            }
+            utenti.add(cliente);
+            model.addAttribute("utenti", utenti);
             return "utentiFarmacia";
         } else {
             Collection<ClienteRegistrato> utenti = utentiController.getElencoUtenti();

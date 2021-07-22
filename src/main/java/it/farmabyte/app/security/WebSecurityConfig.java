@@ -41,19 +41,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	protected void configure(HttpSecurity http) throws Exception {
-		// in / o /home possono andare tutti, per qualunque altra sezione bisogna fare
-		// login
-		/*
-		 * http.authorizeRequests().antMatchers("/", "/home", "/registrazione",
-		 * "/resources/**", "/farmacia/login")
-		 * .permitAll().antMatchers("/nuovaprenotazione",
-		 * "/prenotazioni").hasAuthority("cliente")
-		 * .antMatchers("/farmacia/**").hasAuthority("farmacista").anyRequest().
-		 * authenticated().and().formLogin() .loginPage("/login").permitAll().and()
-		 * .logout().logoutUrl("/logout").logoutSuccessUrl("/home").deleteCookies(
-		 * "JSESSIONID") .and().exceptionHandling().accessDeniedPage("/403")
-		 * .and().csrf().disable();
-		 */
 		http.authorizeRequests().antMatchers("/", "/home", "/registrazione", "/resources/**", "/hintFarmaco", "/hintComune").permitAll()
 				.antMatchers("/farmacia/login", "/farmacia_login").permitAll().antMatchers("/farmacia/**")
 				.hasAuthority("farmacista").antMatchers("/nuovaprenotazione", "/prenotazioni").hasAuthority("cliente")

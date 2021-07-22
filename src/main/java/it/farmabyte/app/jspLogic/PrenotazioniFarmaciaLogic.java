@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -77,12 +76,4 @@ public class PrenotazioniFarmaciaLogic {
         //model.addAttribute("prenotazioniOggi", prenotazioniOggi);
         return "prenotazioniFarmacia";
     }
-
-    @PutMapping("")
-    public String ricercaPrenotazioni(Model model,@ModelAttribute("filtro") RicercaFarmaciDTO filtro, Principal farmacista) {
-        Collection<Prenotazione> ListaPrenotazioni= prenotazioniController.getElencoPrenotazioni( utentiService.findFarmacistaByUsername(farmacista.getName()).getFarmacia(), filtro.getInizio(),filtro.getFine());
-        //model.addAttribute("ListaPrenotazioni", ListaPrenotazioni);
-        return "prenotazioniFarmacia";
-    }
-
 }

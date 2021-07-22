@@ -23,7 +23,7 @@ public class HomeUtenteLogic {
     public String home(Model model, Principal utente) { // Authentication invece di Principal se si vogliono più
                                                         // informazioni
         model.addAttribute("show", false);
-        if(utente==null)
+        if (utente == null)
             return "home";
         ClienteRegistrato cliente;
         cliente = utenteService.findByUsername(utente.getName());
@@ -36,9 +36,8 @@ public class HomeUtenteLogic {
         Farmacista farmacista = utenteService.findFarmacistaByUsername(utente.getName());
         if (farmacista != null) {
             model.addAttribute("nomeFarmacista", " " + farmacista.getNome());
-            System.out.println(utente.getName());
             model.addAttribute("show", true);
-            return "homeFarmacia";
+            return "redirect:/farmacia/";
         }
         return "home";
     }

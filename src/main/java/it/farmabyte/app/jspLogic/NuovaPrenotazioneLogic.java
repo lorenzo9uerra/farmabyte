@@ -22,11 +22,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -147,9 +144,6 @@ public class NuovaPrenotazioneLogic {
 
             MockSingletonDatabase.getDatabaseInstance().insertPrenotazione(prenotazione);
             cliente.addPrenotazione(prenotazione);
-
-            System.out.println(cliente.getNome() + " " + cliente.getCognome() + " " + farmacia.getNome() + " " + data
-            + "\n" + prenotazione.getId() + "(firstFarmaco) : " + prenotazione.getFarmaci().keySet().toArray(new Farmaco[1])[0].getNome());
             model.addAttribute("success", true);
         }
         else{
