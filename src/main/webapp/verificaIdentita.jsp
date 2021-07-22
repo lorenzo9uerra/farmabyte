@@ -30,13 +30,15 @@
 
                 <c:if test="${risultato == 'true'}">
                     <div class="risultatoVerifica">
-                        <form action="/farmacia/verificaIdentita" method="post">
-                            <input type="hidden" name="email" value="${utenteCercato.email}" />
-                            ${utenteCercato.cognome}&emsp;
-                            ${utenteCercato.nome}&emsp;
-                            ${utenteCercato.codiceFiscale}&emsp;
-                            <button class="btn btn-lg" type="submit">Verifica</button>
-                        </form>
+                        <c:forEach items="${utentiCercati}" var="utenteCercato">
+                            <form action="/farmacia/verificaIdentita" method="post">
+                                <input type="hidden" name="email" value="${utenteCercato.email}" />
+                                ${utenteCercato.cognome}&emsp;
+                                ${utenteCercato.nome}&emsp;
+                                ${utenteCercato.codiceFiscale}&emsp;
+                                <button class="btn btn-lg" type="submit">Verifica</button>
+                            </form>
+                        </c:forEach>
                 </c:if>
                 <c:if test="${risultato != 'init' && risultato != 'true'}">
                     <div class="esitoVerifica">

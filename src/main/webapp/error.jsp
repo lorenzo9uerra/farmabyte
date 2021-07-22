@@ -1,5 +1,4 @@
 <%@ page isErrorPage="true" %>  
       
-<h3>Sorry an exception occured!</h3>  
+<h3>Attenzione! Questa area è riservata!</h3>  
   
-Exception is: <%= exception %>  
