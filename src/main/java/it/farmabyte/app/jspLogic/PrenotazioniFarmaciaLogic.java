@@ -1,9 +1,7 @@
 package it.farmabyte.app.jspLogic;
 
-import it.farmabyte.app.DTO.RicercaFarmaciDTO;
 import it.farmabyte.app.controller.IPrenotazioni;
 import it.farmabyte.app.controller.MockSingletonDatabase;
-import it.farmabyte.app.model.ClienteRegistrato;
 import it.farmabyte.app.model.Prenotazione;
 import it.farmabyte.app.services.IUtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
 
 @SpringBootApplication
 @Controller

@@ -46,9 +46,6 @@
                         <c:if test="${risultato == 'GoodEnd'}">
                             <p class="success">L&#39;utente è stato verificato</p>
                         </c:if>
-                        <c:if test="${risultato == 'BadEnd'}">
-                            <p class="error">Si è presentato un errore</p>
-                        </c:if>
                         <c:if test="${risultato == 'verificato'}">
                             <p class="success">L'utente è già verificato</p>
                         </c:if>

@@ -1,6 +1,5 @@
 package it.farmabyte.app.jspLogic;
 
-import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,10 +13,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import it.farmabyte.app.controller.IGestioneAccesso;
 import it.farmabyte.app.model.ClienteRegistrato;
-import it.farmabyte.app.model.Farmacista;
 import it.farmabyte.app.security.UserValidator;
 import it.farmabyte.app.services.ISecurityService;
-import it.farmabyte.app.services.IUtenteService;
 
 @SpringBootApplication
 @Controller
@@ -32,9 +29,6 @@ public class GestioneAccessoLogic {
 
     @Autowired
     private IGestioneAccesso gestioneAccesso;
-
-    @Autowired
-    private IUtenteService utenteService;
 
     @GetMapping("/registrazione")
     public String registrazione(Model model) {

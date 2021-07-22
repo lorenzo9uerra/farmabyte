@@ -1,7 +1,6 @@
 
 package it.farmabyte.app.jspLogic;
 
-import it.farmabyte.app.DTO.RicercaUtenteDTO;
 import it.farmabyte.app.controller.UtentiController;
 import it.farmabyte.app.model.ClienteRegistrato;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,13 +47,9 @@ public class VerificaIdentitaLogic {
 
     @PostMapping("")
     public String VerificaUtente(@RequestParam(value = "email", required = false) String email, Model model) {
-        System.out.println(email);
-        // if(utentiController.confermaUtente(email))
-        if (true)
-            model.addAttribute("risultato", "GoodEnd");
-        else
-            model.addAttribute("risultato", "BadEnd");
-        model.addAttribute("ricercaUtente", new RicercaUtenteDTO());
+        ClienteRegistrato cliente = utentiController.ricercaUtente(email);
+        cliente.setVerificato(true);
+        model.addAttribute("risultato", "GoodEnd");
         return "verificaIdentita";
     }
 
